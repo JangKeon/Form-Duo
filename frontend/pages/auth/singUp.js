@@ -21,10 +21,10 @@ export default function signUp() {
                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                 alt="Your Company"
               />
-              <h2 className="mt-6 text-3xl font-bold tracking-tight text-center text-gray-900">
+              <h2 className="mt-6 text-3xl font-bold tracking-tight text-center text-neutral-900">
                 Sign in to your account
               </h2>
-              <p className="mt-2 text-sm text-center text-gray-600">
+              <p className="mt-2 text-sm text-center text-neutral-600">
                 Or{' '}
                 <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
                   start your 14-day free trial
@@ -44,7 +44,7 @@ export default function signUp() {
                     type="email"
                     autoComplete="email"
                     required
-                    className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    className="relative block w-full px-3 py-2 text-neutral-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                     placeholder="Email address"
                   />
                 </div>
@@ -58,7 +58,7 @@ export default function signUp() {
                     type="password"
                     autoComplete="current-password"
                     required
-                    className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    className="relative block w-full px-3 py-2 text-neutral-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                     placeholder="Password"
                   />
                 </div>
@@ -72,7 +72,7 @@ export default function signUp() {
                     type="checkbox"
                     className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                   />
-                  <label htmlFor="remember-me" className="block ml-2 text-sm text-gray-900">
+                  <label htmlFor="remember-me" className="block ml-2 text-sm text-neutral-900">
                     Remember me
                   </label>
                 </div>

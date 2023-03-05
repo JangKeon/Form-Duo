@@ -5,7 +5,7 @@ import logoMixed from '../../public/img/mixed@3x.png'
 import logoIcon from '../../public/img/icon@3x.png'
 import Link from 'next/link';
 import {getCookie, getCookies, setCookie} from "cookies-next";
-import { Bars3Icon, DocumentTextIcon, MicrophoneIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, DocumentTextIcon, MicrophoneIcon, XMarkIcon, ChartPieIcon } from '@heroicons/react/24/outline'
 import {useRecoilState} from "recoil";
 import {refToken} from "../../atoms/refToken";
 import {accToken} from "../../atoms/accToken";
@@ -33,6 +33,7 @@ const navigationBeforeLogin = [
 const svyType = [
   { name: '일반 설문', href: '/survey/create/basic', icon: 'DocumentTextIcon' },
   { name: '듀오 설문', href: '/survey/create/duo', icon: 'MicrophoneIcon' },
+  { name: '발화분석 설문', href: '/survey/create/emotion', icon: 'ChartPieIcon'}
 ]
 
 function classNames(...classes) {
@@ -103,7 +104,7 @@ export default function Header () {
           <Disclosure as="nav">
             {({ open }) => (
                 <>
-                  <div className="px-4 mx-auto border-b-2 border-gray-200 max-w-7xl sm:px-6 lg:px-5">
+                  <div className="px-4 mx-auto border-b-2 border-gray-200 dark:border-neutral-700 max-w-7xl sm:px-6 lg:px-5">
                     <div className="flex items-center justify-between h-24">
 
                       {/* logo */}
@@ -148,8 +149,8 @@ export default function Header () {
                                                       className={classNames(
                                                           item.current
                                                               ? 'text-fdblue'
-                                                              : 'text-gray-700 hover:bg-fdbluelight hover:opacity-70 hover:text-white',
-                                                          'px-3 py-2 rounded-lg text-base font-semibold hover:scale-105 duration-200'
+                                                              : 'text-neutral-700 hover:bg-fdbluelight hover:text-white',
+                                                          'px-3 py-2 rounded-lg text-base font-semibold hover:scale-105 duration-200 dark:text-fdyellowbright dark:hover:text-fdyellowlight dark:hover:bg-neutral-600'
                                                       )}
                                                       aria-current={item.current ? 'page' : undefined}
                                                   >
@@ -166,7 +167,7 @@ export default function Header () {
                                                   leaveFrom="transform opacity-100 scale-100"
                                                   leaveTo="transform opacity-0 scale-95"
                                               >
-                                                <Menu.Items className="absolute z-10 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg w-36 ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                <Menu.Items className="absolute z-10 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg dark:bg-neutral-700 w-36 ring-1 ring-black ring-opacity-5 focus:outline-none">
                                                   {svyType.map((item) => (
                                                       <Menu.Item key={item.name}>
                                                         {({ active }) => (
@@ -174,7 +175,7 @@ export default function Header () {
                                                                 href={item.href}
                                                                 className={classNames(
                                                                     active ? 'bg-neutral-100' : '',
-                                                                    'content-center block px-4 py-2 text-sm font-bold text-gray-700 border-b-2 border-gray-100'
+                                                                    'content-center block px-4 py-2 text-sm font-bold text-neutral-700 border-b-2 border-gray-100 dark:border-neutral-500 dark:hover:bg-neutral-800 dark:text-fdyellowbright dark:hover:text-fdyellowlight'
                                                                 )}
                                                             >
                                                               <div className='flex items-center'>
@@ -183,6 +184,7 @@ export default function Header () {
                                                                   {
                                                                     'DocumentTextIcon': <DocumentTextIcon className='w-4 h-4 mr-2'/>,
                                                                     'MicrophoneIcon': <MicrophoneIcon className='w-4 h-4 mr-2'/>,
+                                                                    'ChartPieIcon': <ChartPieIcon className='w-4 h-4 mr-2'/>,
                                                                   }[item.icon]
                                                                 }
                                                                 {item.name}
@@ -203,8 +205,8 @@ export default function Header () {
                                                 className={classNames(
                                                     item.current
                                                         ? 'text-fdblue'
-                                                        : 'text-gray-700 hover:bg-fdbluelight hover:opacity-70 hover:text-white',
-                                                    'px-3 py-2 rounded-lg text-base font-semibold hover:scale-105 duration-200'
+                                                        : 'text-neutral-700 hover:bg-fdbluelight hover:text-white',
+                                                    'px-3 py-2 rounded-lg text-base font-semibold hover:scale-105 duration-200 dark:text-fdyellowbright dark:hover:text-fdyellowlight dark:hover:bg-neutral-600'
                                                 )}
                                                 aria-current={item.current ? 'page' : undefined}
                                             >
@@ -212,8 +214,8 @@ export default function Header () {
                                                   className={classNames(
                                                       item.current
                                                           ? 'text-fdblue'
-                                                          : 'text-gray-700 hover:bg-fdbluelight hover:opacity-70 hover:text-white',
-                                                      'px-3 py-2 rounded-lg text-base font-semibold hover:scale-105 duration-200'
+                                                          : 'text-neutral-700 hover:bg-fdbluelight hover:text-white',
+                                                      'px-3 py-2 rounded-lg text-base font-semibold hover:scale-105 duration-200 dark:text-fdyellowbright dark:hover:text-fdyellowlight dark:hover:bg-neutral-600'
                                                   )}>
                                                 {item.name}
                                               </div>
@@ -232,8 +234,8 @@ export default function Header () {
                                               className={classNames(
                                                   item.current
                                                       ? 'text-fdblue'
-                                                      : 'text-gray-700 hover:bg-fdbluelight hover:opacity-70 hover:text-white',
-                                                  'px-3 py-2 rounded-lg text-base font-semibold hover:scale-105 duration-200'
+                                                      : 'text-neutral-700 hover:bg-fdbluelight hover:text-white',
+                                                  'px-3 py-2 rounded-lg text-base font-semibold hover:scale-105 duration-200 dark:text-fdyellowbright dark:hover:text-fdyellowlight dark:hover:bg-neutral-600'
                                               )}>
                                             {item.name}
                                           </div>
@@ -251,11 +253,11 @@ export default function Header () {
                               <div className="flex items-center ml-4 md:ml-6">
                                 <div className="items-center justify-end hidden md:flex md:flex-1 lg:w-0">
                                   <Link href='/account/myPage'>
-                                    <button className="text-sm font-normal text-gray-500 duration-200 whitespace-nowrap hover:text-fdbluedark hover:scale-105">
+                                    <button className="text-sm font-normal text-neutral-500 duration-200 dark:text-fdyellowbright whitespace-nowrap hover:text-fdbluedark hover:scale-105 dark:hover:text-fdyellow">
                                       마이페이지
                                     </button>
                                   </Link>
-                                  <button onClick={openModal}  className="inline-flex items-center justify-center px-3 py-2 ml-8 text-sm font-normal text-white duration-200 border border-transparent rounded-md shadow-sm whitespace-nowrap bg-fdblue hover:bg-fdbluedark hover:scale-105">
+                                  <button onClick={openModal}  className="inline-flex items-center justify-center px-3 py-2 ml-8 text-sm font-normal text-white duration-200 border border-transparent rounded-md shadow-sm whitespace-nowrap bg-fdblue hover:bg-fdbluedark hover:scale-105 dark:bg-fdyellowlight dark:hover:bg-fdyellow dark:text-neutral-800">
                                     로그아웃
                                   </button>
                                 </div>
@@ -266,14 +268,14 @@ export default function Header () {
                               <div className="flex items-center ml-4 md:ml-6">
                                 <div className="items-center justify-end hidden md:flex md:flex-1 lg:w-0">
                                   <Link href='/account/signIn'>
-                                    {/*<button onClick={() => signIn("kakao")} className="text-sm font-normal text-gray-500 duration-200 whitespace-nowrap hover:text-fdbluedark hover:scale-105">*/}
-                                    <button className="text-sm font-normal text-gray-500 duration-200 whitespace-nowrap hover:text-fdbluedark hover:scale-105">
+                                    {/*<button onClick={() => signIn("kakao")} className="text-sm font-normal text-neutral-500 duration-200 whitespace-nowrap hover:text-fdbluedark hover:scale-105">*/}
+                                    <button className="text-sm font-normal text-neutral-500 duration-200 whitespace-nowrap hover:text-fdbluedark hover:scale-105 dark:text-fdyellowbright dark:hover:text-fdyellow">
                                       {/*Sign In with Kakao*/}
                                       로그인
                                     </button>
                                   </Link>
                                   <Link href='/account/signUp'>
-                                    <div className="inline-flex items-center justify-center px-3 py-2 ml-8 text-sm font-normal text-white duration-200 border border-transparent rounded-md shadow-sm whitespace-nowrap bg-fdblue hover:bg-fdbluedark hover:scale-105">
+                                    <div className="inline-flex items-center justify-center px-3 py-2 ml-8 text-sm font-normal text-white duration-200 border border-transparent rounded-md shadow-sm whitespace-nowrap bg-fdblue hover:bg-fdbluedark hover:scale-105 dark:bg-fdyellowlight dark:hover:bg-fdyellow dark:text-neutral-800">
                                       회원가입
                                     </div>
                                   </Link>
@@ -305,7 +307,7 @@ export default function Header () {
                               as="a"
                               href={item.href}
                               className={classNames(
-                                  item.current ? 'bg-fdblue text-white' : 'text-gray-500 hover:bg-fdblue hover:text-white',
+                                  item.current ? 'bg-fdblue text-white' : 'text-neutral-500 hover:bg-fdblue hover:text-white',
                                   'block px-3 py-2 rounded-md text-sm font-medium'
                               )}
                               aria-current={item.current ? 'page' : undefined}
@@ -318,7 +320,7 @@ export default function Header () {
                               as="a"
                               href={item.href}
                               className={classNames(
-                                  item.current ? 'bg-fdblue text-white' : 'text-gray-500 hover:bg-fdblue hover:text-white',
+                                  item.current ? 'bg-fdblue text-white' : 'text-neutral-500 hover:bg-fdblue hover:text-white',
                                   'block px-3 py-2 rounded-md text-sm font-medium'
                               )}
                               aria-current={item.current ? 'page' : undefined}
@@ -333,16 +335,16 @@ export default function Header () {
                                 key="mypage"
                                 as="a"
                                 href='/account/myPage'
-                                className={classNames('text-gray-500 hover:bg-fdblue hover:text-white',
-                                    'block px-3 py-2 rounded-md text-sm font-medium')}
+                                className={classNames('text-neutral-500 hover:bg-fdblue hover:text-white',
+                                    'block px-3 py-2 rounded-md text-sm font-medium dark:text-fdyellowdark')}
                             >
                               마이페이지
                             </Disclosure.Button>
                             <Disclosure.Button
                                 as="a"
                                 onClick={openModal}
-                                className={classNames('text-gray-500 hover:bg-fdblue hover:text-white',
-                                    'block px-3 py-2 rounded-md text-sm font-medium')}
+                                className={classNames('text-neutral-500 hover:bg-fdblue hover:text-white',
+                                    'block px-3 py-2 rounded-md text-sm font-medium dark:text-fdyellowdark')}
                             >
                               로그아웃
                             </Disclosure.Button>
@@ -352,8 +354,8 @@ export default function Header () {
                                 key="login"
                                 as="a"
                                 href='/account/signIn'
-                                className={classNames('text-gray-500 hover:bg-fdblue hover:text-white',
-                                    'block px-3 py-2 rounded-md text-sm font-medium')}
+                                className={classNames('text-neutral-500 hover:bg-fdblue hover:text-white',
+                                    'block px-3 py-2 rounded-md text-sm font-medium dark:text-fdyellowdark')}
                             >
                               로그인
                             </Disclosure.Button>
@@ -361,7 +363,7 @@ export default function Header () {
                                 key="login"
                                 as="a"
                                 href='/account/signUp'
-                                className={classNames('text-gray-500 hover:bg-fdblue hover:text-white', 'block px-3 py-2 rounded-md text-sm font-medium')}
+                                className={classNames('text-neutral-500 hover:bg-fdblue hover:text-white', 'block px-3 py-2 rounded-md text-sm font-medium')}
                             >
                               회원가입
                             </Disclosure.Button>
@@ -402,12 +404,12 @@ export default function Header () {
                   <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                     <Dialog.Title
                         as="h3"
-                        className="text-lg font-extrabold leading-6 text-gray-900"
+                        className="text-lg font-extrabold leading-6 text-neutral-900"
                     >
                       로그아웃
                     </Dialog.Title>
                     <div className="mt-2">
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-neutral-500">
                         로그아웃 하시겠습니까🥺?
                       </p>
                     </div>

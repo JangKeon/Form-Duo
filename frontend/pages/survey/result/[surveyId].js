@@ -52,7 +52,7 @@ const SurveyResult = () => {
     if (!surveyId) return <p> Loading ...</p>
     if (isLoading) return <p> Loading...</p>
     if (!data || data.length === 0) return (
-        <div className="bg-white">
+        <div>
             <div className="max-w-2xl px-4 py-8 mx-auto sm:py-8 sm:px-6 lg:max-w-7xl lg:px-8">
 
                 <div align="center">
@@ -67,9 +67,9 @@ const SurveyResult = () => {
         if (surveyType === "duo") return (
             <div>
                 <div>
-                    <div className="py-1 mt-1 overflow-auto bg-white rounded-md shadow-lg max-h-30 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                    <div className="py-1 mt-1 overflow-auto rounded-md shadow-lg max-h-30 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
 
-                        <h1>설문 참여율 : {data.length} / {data[0].svyRespsMax}</h1>
+                        <h1 className='dark:text-neutral-200'>설문 참여율 : {data.length} / {data[0].svyRespsMax}</h1>
                         <Slider data={parseInt((data.length / data[0].svyRespsMax * 100).toString())} />
 
                     </div>
@@ -85,7 +85,7 @@ const SurveyResult = () => {
             <div>
                 <div
                 >
-                    <div className="py-1 mt-1 overflow-auto bg-white rounded-md shadow-lg max-h-30 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                    <div className="py-1 mt-1 overflow-auto rounded-md shadow-lg max-h-30 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
 
                         <h1>설문 참여율 : {data.length} / {data[0].svyRespsMax}</h1>
                         <Slider data={parseInt((data.length / data[0].svyRespsMax * 100).toString())} />

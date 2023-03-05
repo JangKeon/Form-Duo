@@ -27,7 +27,7 @@ const ShowQuestionListItem = ({ qId, qTitle, qInfo, qType, qImage, qVideo, qisMu
             case 'Subjective':
                 return <Subjective qId={qId} qTitle={qTitle} qInfo={qInfo} svyRespContents={svyRespContents} setSvyRespContents={setSvyRespContents} qNumber={qNumber} isModify={isModify}/>
             case 'Voice':
-                return <Voice qId={qId} qTitle={qTitle} qInfo={qInfo} svyRespContents={svyRespContents} setSvyRespContents={setSvyRespContents} isModify={isModify}/>
+                return <Voice qId={qId} qTitle={qTitle} qInfo={qInfo} svyRespContents={svyRespContents} setSvyRespContents={setSvyRespContents} qNumber={qNumber} isModify={isModify}/>
             case 'Video':
                 return <Video qId={qId} qTitle={qTitle} qInfo={qInfo} svyRespContents={svyRespContents} setSvyRespContents={setSvyRespContents} isModify={isModify}/>
         }

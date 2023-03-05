@@ -10,6 +10,7 @@ import {refToken} from '../../atoms/refToken'
 import { useRouter } from 'next/router'
 import {getCookie, setCookie} from "cookies-next";
 import {Dialog, Transition} from "@headlessui/react";
+import FindUserEmail from "../../components/ui/account/FindUserEmail";
 
 const SignIn =()=> {
     const router = useRouter();
@@ -24,6 +25,14 @@ const SignIn =()=> {
     }
     function openFailModal() {
         setIsFailOpen(true)
+    }
+    const [isFindMailOpen, setIsFindMailOpen] = useState(false)
+    //이메일 계정 조회 모달
+    function openCheckEmail() {
+        setIsFindMailOpen(true)
+    }
+    function closeCheckEmail() {
+        setIsFindMailOpen(false)
     }
 
     const onEmailChange = (e) => {
@@ -76,15 +85,15 @@ const SignIn =()=> {
 
     return (
         <>
-            <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-center min-h-full px-4 py-12 sm:px-6 lg:px-8">
                 <div className="w-full max-w-md space-y-8">
                     <div>
                         <Image
-                            className="w-60 h-auto mx-auto"
+                            className="h-auto mx-auto w-60"
                             src={logoIcon}
                             alt="FormDuo"
                         />
-                        <h2 className="mt-5 text-center text-2xl font-bold tracking-tight text-fdblue">
+                        <h2 className="mt-5 text-2xl font-bold tracking-tight text-center text-fdblue dark:text-fdyellowlight">
                             로 그 인
                         </h2>
                     </div>
@@ -101,7 +110,7 @@ const SignIn =()=> {
                                     type="email"
                                     autoComplete="email"
                                     required
-                                    className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                    className="relative block w-full px-3 py-2 text-neutral-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                     placeholder="Email address"
                                     onChange={onEmailChange}
                                 />
@@ -116,19 +125,38 @@ const SignIn =()=> {
                                     type="password"
                                     autoComplete="current-password"
                                     required
-                                    className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                    className="relative block w-full px-3 py-2 text-neutral-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                     placeholder="Password"
                                     onChange={onPwChange}
                                 />
                             </div>
                         </div>
-
-                        <div className="flex items-center float-right justify-between">
+                        <div className="flex items-center justify-between float-left">
+                            <div className="text-sm">
+                                <button
+                                    type="button"
+                                    onClick={openCheckEmail}
+                                >
+                                    <a className="mr-2 font-bold text-fdbluedark hover:text-fdblue dark:text-neutral-200">
+                                        계정 조회
+                                    </a>
+                                </button>
+                                /
+                                <Link
+                                    href="/account/changePw"
+                                >
+                                    <a className="ml-2 font-bold text-fdbluedark hover:text-fdblue dark:text-neutral-200">
+                                        비밀번호 재설정
+                                    </a>
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="flex items-center justify-between float-right">
                             <div className="text-sm">
                                 <Link
                                     href="/account/signUp"
                                 >
-                                <a className="font-bold text-fdbluedark hover:text-fdblue">
+                                <a className="font-bold text-fdbluedark hover:text-fdblue dark:text-neutral-200">
                                     회원가입
                                 </a>
                                 </Link>
@@ -139,10 +167,10 @@ const SignIn =()=> {
                                 <button
                                     type="button"
                                     onClick={() => reqLogin()}
-                                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-fdbluedark py-2 px-4 text-sm font-medium text-white hover:bg-fdblue focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                    className="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md group bg-fdbluedark hover:bg-fdblue focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:bg-fdyellowlight dark:text-neutral-700"
                                 >
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                  <LockClosedIcon className="h-5 w-5 text-fdbluelight group-hover:text-fdbluedark" aria-hidden="true" />
+                  <LockClosedIcon className="w-5 h-5 text-fdbluelight group-hover:text-fdbluedark dark:text-neutral-700" aria-hidden="true" />
                 </span>
                                     로그인
                                 </button>
@@ -150,6 +178,9 @@ const SignIn =()=> {
                     </form>
                 </div>
             </div>
+
+            {/*Email check Modal*/}
+            <FindUserEmail show={isFindMailOpen} onHide={()=>{closeCheckEmail()}} init={true}/>
 
             {/*  signIn Fail Modal */}
             <Transition appear show={isFailOpen} as={Fragment}>
@@ -180,12 +211,12 @@ const SignIn =()=> {
                                 <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                                     <Dialog.Title
                                         as="h3"
-                                        className="text-lg font-extrabold leading-6 text-gray-900"
+                                        className="text-lg font-extrabold leading-6 text-neutral-900"
                                     >
                                         ❗로그인 실패
                                     </Dialog.Title>
                                     <div className="mt-2">
-                                        <p className="text-sm text-gray-500 justify-center">
+                                        <p className="justify-center text-sm text-neutral-500">
                                             로그인에 실패하였습니다! 확인 후 다시 로그인해주세요😢️
                                         </p>
                                     </div>

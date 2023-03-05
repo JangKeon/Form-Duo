@@ -3,7 +3,7 @@ import React from 'react';
 import logoIcon from '../../public/img/blue-yellow@3x.png'
 
 const Footer = () => (
-  <div className='bg-fdyellowbright bg-opacity-40'>
+  <div className='bg-fdyellowbright bg-opacity-40 dark:bg-neutral-700'>
     <div className="flex items-center w-full p-4 place-content-between">
       <div className='m-4'>
         <Image src={logoIcon} alt="FormDuo" className="w-32 h-auto" />
@@ -60,7 +60,7 @@ const Footer = () => (
           </a>
         </div>
         <div className="flex items-center mt-2">
-          <p className="text-xs font-light leading-none text-neutral-400 lg:text-sm dark:text-gray-50">
+          <p className="text-xs font-light leading-none text-neutral-400 lg:text-sm dark:text-neutral-50">
             &copy; {new Date().getFullYear()} designed by{' '}
             <a href="#" rel="nofollow">
               SWEEP

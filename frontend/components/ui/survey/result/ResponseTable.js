@@ -71,7 +71,7 @@ const ResponseTable = (props) => {
     
                                                             query: {svyId: props.surveyId, svyResId: row.svyResId, svyResContents: JSON.stringify(row.svyRespContent), preURL : '/survey/result/'+props.surveyId},
     
-                                                            })}
+                                                            }, '/survey/preview/basic/'+row.svyResId)}
                                                 className="inline-flex items-center justify-center px-3 py-2 ml-8 text-sm font-normal text-white duration-200 border border-transparent rounded-md shadow-sm whitespace-nowrap bg-fdblue hover:bg-fdbluedark hover:scale-105">
                                             확인 </button>
                                         : 
@@ -80,7 +80,7 @@ const ResponseTable = (props) => {
     
                                                             query: {svyId: props.surveyId, svyResId: row.svyResId, svyResContents: JSON.stringify(row.svyRespContent), preURL : '/survey/result/'+props.surveyId},
     
-                                                            })}
+                                                            }, 'survey/preview/duo/'+row.svyResId)}
                                                 className="inline-flex items-center justify-center px-3 py-2 ml-8 text-sm font-normal text-white duration-200 border border-transparent rounded-md shadow-sm whitespace-nowrap bg-fdblue hover:bg-fdbluedark hover:scale-105">
                                             확인 </button>
                                     }

@@ -58,6 +58,7 @@ export default function SurveyGridList() {
     "전체 설문": [],
     "일반 설문": [],
     "듀오 설문": [],
+    "발화 분석 설문" : []
   })
 
   let imgNum = 1;
@@ -76,7 +77,7 @@ export default function SurveyGridList() {
    }, []);
    
    if (!data || data.length === 0) return (
-    <div className="bg-white">
+    <div>
       <div className="max-w-2xl px-4 py-8 mx-auto sm:py-8 sm:px-6 lg:max-w-7xl lg:px-8">
         <div className="mt-5 mb-7">
                 <Tab.Group
@@ -111,6 +112,16 @@ export default function SurveyGridList() {
                                 }
                             });
                         }
+                        if(index == 3) {
+                            getSvyListByType("emotion").then(r => {
+                                if(r == undefined){
+                                    setData(null)
+                                } else {
+                                    setSvyList(r.data)
+                                    setData(r.data)
+                                }
+                            });
+                        }
                     }}>
                     <Tab.List className="flex p-1 space-x-1 bg-blue-900/5 rounded-xl">
                     {Object.keys(categories).map((category) => (
@@ -121,8 +132,8 @@ export default function SurveyGridList() {
                             'w-full rounded-lg py-2.5 text-sm font-bold leading-5',
                             'ring-white ring-opacity-60 ring-offset-2 focus:outline-none focus:ring-2',
                             selected
-                                ? 'text-white bg-blue-900/40'
-                                : 'text-neutral-500 hover:bg-blue-900/20 hover:text-fdbluedark'
+                                ? 'text-white bg-blue-900/40 dark:bg-fdyellowlight dark:text-neutral-600'
+                                : 'text-neutral-500 hover:bg-blue-900/20 hover:text-fdbluedark dark:bg-neutral-500/40 dark:hover:bg-amber-300/80 dark:hover:text-neutral-100 dark:text-neutral-200'
                             )
                         }
                         >
@@ -243,7 +254,7 @@ export default function SurveyGridList() {
   }
   
   return (
-    <div className="bg-white">
+    <div>
       <div className="max-w-2xl px-4 py-8 mx-auto sm:py-8 sm:px-6 lg:max-w-7xl lg:px-8">
         <div className="mt-5 mb-7">
             <Tab.Group
@@ -276,6 +287,16 @@ export default function SurveyGridList() {
                             }
                           });
                     }
+                    if(index == 3) {
+                        getSvyListByType("emotion").then(r => {
+                            if(r == undefined){
+                                setData(null)
+                            } else {
+                                setSvyList(r.data)
+                                setData(r.data)
+                            }
+                        });
+                    }
 
                     console.log(data);
                 }}>
@@ -304,7 +325,7 @@ export default function SurveyGridList() {
 
         <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
           {svyList.map((survey) => (
-              <div key={survey.id} className="duration-200 rounded-2xl bg-neutral-100">
+              <div key={survey.id} className="duration-200 rounded-2xl bg-neutral-100 dark:bg-neutral-500">
                   <div>
                       <div className="w-full overflow-hidden rounded-t-lg bg-neutral-200 aspect-w-16 aspect-h-9 xl:aspect-w-16 xl:aspect-h-9">
                           <Link
@@ -342,7 +363,7 @@ export default function SurveyGridList() {
                       </div>
                       <div className="flex justify-between m-4">
                           <div className="w-3/4">
-                              <p className="text-base font-bold text-gray-900 truncate">{survey.svyTitle}</p>
+                              <p className="text-base font-bold text-neutral-900 truncate dark:text-fdyellowbright">{survey.svyTitle}</p>
                               <div className="mt-2">
                                 <span className={( survey.svyEndDt < today ? "text-red-800 bg-red-100 dark:bg-red-200 dark:text-red-800" : "text-blue-800 bg-blue-100 dark:bg-blue-200 dark:text-blue-800") + " text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-lg"}>
                                     {survey.svyEndDt < today
@@ -350,14 +371,14 @@ export default function SurveyGridList() {
                                         : "진행중"
                                     }
                                 </span>
-                                <span className="text-xs text-gray-700">{(survey.svyRegDt).substr(0, 10)} 생성됨</span>
+                                <span className="text-xs text-neutral-700 dark:text-neutral-200">{(survey.svyRegDt).substr(0, 10)} 생성됨</span>
                               </div>
                           </div>
                           <div>
                               <Menu as="div" className="relative ml-3">
                                   <div>
                                       <Menu.Button className="flex max-w-xs text-sm focus:outline-none">
-                                          <EllipsisVerticalIcon className="block w-6 h-6"/>
+                                          <EllipsisVerticalIcon className="block w-6 h-6 dark:text-neutral-300"/>
                                       </Menu.Button>
                                   </div>
                                   <Transition
@@ -369,7 +390,7 @@ export default function SurveyGridList() {
                                   leaveFrom="transform opacity-100 scale-100"
                                   leaveTo="transform opacity-0 scale-95"
                                   >
-                                      <Menu.Items className="absolute right-0 z-10 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg w-36 ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                      <Menu.Items className="absolute right-0 z-10 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg w-36 ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-neutral-700">
                                           {(survey.svyEndDt < today ? closedSurveyMenu : activeSurveyMenu).map((item) => (
                                               <Menu.Item key={item.name}>
                                                   {
@@ -382,7 +403,7 @@ export default function SurveyGridList() {
                                                               >
                                                                   <div className={classNames(
                                                                       active ? 'bg-neutral-100' : '',
-                                                                      'block px-4 py-2 text-sm  text-gray-700 border-b-2 border-gray-100'
+                                                                      'block px-4 py-2 text-sm  text-neutral-700 border-b-2 border-gray-100 hover:bg-neutral-100 dark:border-neutral-600 dark:text-neutral-200 dark:hover:bg-neutral-600'
                                                                   )}>
                                                                       {item.name}
                                                                   </div>
@@ -391,7 +412,7 @@ export default function SurveyGridList() {
                                                           :
                                                           <a
                                                               onClick={() => showModal(item.name, survey.id)}
-                                                              className='block px-4 py-2 text-sm text-gray-700 border-b-2 border-gray-100 hover:bg-neutral-100'
+                                                              className='block px-4 py-2 text-sm text-neutral-700 border-b-2 border-gray-100 hover:bg-neutral-100 dark:border-neutral-600 dark:text-neutral-200 dark:hover:bg-neutral-600'
                                                           >
                                                               {item.name}
                                                           </a>
@@ -437,12 +458,12 @@ export default function SurveyGridList() {
                   <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                   <Dialog.Title
                       as="h3"
-                      className="text-lg font-extrabold leading-6 text-gray-900"
+                      className="text-lg font-extrabold leading-6 text-neutral-900"
                   >
                      설문 삭제
                   </Dialog.Title>
                   <div className="mt-3">
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-neutral-500">
                       설문을 삭제하시겠습니까?
                       </p>
                       <p className="mt-1 text-xs text-red-500">
@@ -503,25 +524,25 @@ export default function SurveyGridList() {
                   <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                   <Dialog.Title
                       as="h3"
-                      className="text-lg font-extrabold leading-6 text-gray-900"
+                      className="text-lg font-extrabold leading-6 text-neutral-900"
                   >
                      설문 공유
                   </Dialog.Title>
 
                   <div className="mt-2">
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-neutral-500">
                         QR코드나 링크를 통해 설문을 공유할 수 있습니다.
                       </p>
 
                       <div className="flex mt-2 rounded-md shadow-sm">
                         <input
                           type="text"
-                          className="flex-1 block w-full text-xs text-gray-600 border-gray-300 rounded-none rounded-l-md focus:border-gray-300 focus:ring-0"
+                          className="flex-1 block w-full text-xs text-neutral-600 border-gray-300 rounded-none rounded-l-md focus:border-gray-300 focus:ring-0"
                           placeholder="경로"
                           value={shareUrl}
                           readOnly
                         />
-                        <span className="inline-flex items-center px-3 text-sm text-gray-500 border border-l-0 border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100 hover:text-gray-600" onClick={() => copyUrl()}>
+                        <span className="inline-flex items-center px-3 text-sm text-neutral-500 border border-l-0 border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100 hover:text-neutral-600" onClick={() => copyUrl()}>
                           복사
                         </span>
                       </div>
@@ -634,12 +655,12 @@ export default function SurveyGridList() {
                     <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                     <Dialog.Title
                         as="h3"
-                        className="text-lg font-extrabold leading-6 text-gray-900"
+                        className="text-lg font-extrabold leading-6 text-neutral-900"
                     >
                         설문 삭제 성공
                     </Dialog.Title>
                     <div className="mt-2">
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-neutral-500">
                         설문이 성공적으로 삭제되었습니다 
                         </p>
                     </div>
@@ -688,12 +709,12 @@ export default function SurveyGridList() {
                     <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                     <Dialog.Title
                         as="h3"
-                        className="text-lg font-extrabold leading-6 text-gray-900"
+                        className="text-lg font-extrabold leading-6 text-neutral-900"
                     >
                         오류 발생
                     </Dialog.Title>
                     <div className="mt-2">
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-neutral-500">
                         오류가 발생하였습니다. 잠시후 다시 시도해주세요
                         </p>
                     </div>

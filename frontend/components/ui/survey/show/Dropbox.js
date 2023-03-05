@@ -40,20 +40,20 @@ export default function Dropdox(props) {
   if (props.isModify) {
 
     return (
-      <div className="mt-5 border-2 border-gray-100 rounded-2xl shadow-lg">
-        <div className="text-lg bg-fdyellowbright text-gray-900 indent-3">
+      <div className="mt-5 border-2 border-gray-100 shadow-lg rounded-2xl dark:border-neutral-600">
+        <div className="text-lg text-neutral-900 bg-fdyellowbright indent-3 rounded-t-2xl dark:bg-neutral-400zzzzzzzzzzzzzzzzzzzzzzzzzzz">
           Question. {props.qNumber}
         </div>
         <div className="overflow-hidden shadow rounded-2xl">
-          <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
+          <div className="px-4 py-5 space-y-6 bg-white sm:p-6">
             <div className="col-span-6 sm:col-span-3">
-              <legend className="contents text-base font-medium text-gray-900">{props.qTitle}</legend>
-              <p className="text-sm text-gray-500">{props.qInfo}</p>
+              <legend className="text-base font-medium text-neutral-900 contents">{props.qTitle}</legend>
+              <p className="text-sm text-neutral-500">{props.qInfo}</p>
               <select
                 id="country"
                 name="country"
                 autoComplete="country-name"
-                className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                className="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                 onChange={onChange}
               >
                 <option value="">선택지를 선택해주세요</option>
@@ -73,20 +73,20 @@ export default function Dropdox(props) {
 
     return (
 
-      <div className="mt-5 border-2 border-gray-100 rounded-2xl shadow-lg">
-        <div className="text-lg bg-fdyellowbright text-gray-900 indent-3">
+      <div className="mt-5 border-2 border-gray-100 shadow-lg rounded-2xl dark:border-neutral-600">
+        <div className="text-lg text-neutral-900 bg-fdyellowbright rounded-t-2xl indent-3 dark:bg-neutral-400">
           Question. {props.qNumber}
         </div>
         <div className="overflow-hidden shadow rounded-2xl">
-          <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
+          <div className="px-4 py-5 space-y-6 bg-white sm:p-6 dark:bg-neutral-700">
             <div className="col-span-6 sm:col-span-3">
-              <legend className="contents text-base font-medium text-gray-900">{props.qTitle}</legend>
-              <p className="text-sm text-gray-500">{props.qInfo}</p>
+              <legend className="text-base font-medium text-neutral-900 contents dark:text-fdyellowlight">{props.qTitle}</legend>
+              <p className="text-sm text-neutral-500 dark:text-white">{props.qInfo}</p>
               <select
                 id="country"
                 name="country"
                 autoComplete="country-name"
-                className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                className="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                 defaultValue={props.svyRespContents[index].ansVal[0].qContentId}
                 disabled={true}
               >

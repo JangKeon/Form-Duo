@@ -41,15 +41,15 @@ export default function Objective(props) {
 
     return (
 
-        <div className="mt-5 border-2 border-gray-100 rounded-2xl shadow-lg">
-          <div className="text-lg bg-fdyellowbright text-gray-900 indent-3">
+        <div className="mt-5 border-2 border-gray-100 shadow-lg rounded-2xl dark:border-neutral-600">
+          <div className="text-lg text-neutral-900 bg-fdyellowbright indent-3 rounded-t-2xl dark:bg-neutral-400">
             Question. {props.qNumber}
           </div>
           <div className="overflow-hidden shadow rounded-2xl">
-            <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
+            <div className="px-4 py-5 space-y-6 bg-white sm:p-6">
               <fieldset>
-                <legend className="contents text-base font-medium text-gray-900">{props.qTitle}</legend>
-                <p className="text-sm text-gray-500">{props.qInfo}</p>
+                <legend className="text-base font-medium text-neutral-900 contents">{props.qTitle}</legend>
+                <p className="text-sm text-neutral-500">{props.qInfo}</p>
                 <div className="mt-4 space-y-4">
 
                   {props.qContents && props.qContents.map((qContent) => {
@@ -60,11 +60,11 @@ export default function Objective(props) {
                                 id="push-everything"
                                 name={props.qId}
                                 type="radio"
-                                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                className="w-4 h-4 text-indigo-600 border-gray-300 focus:ring-indigo-500"
                                 onChange={onChange}
                                 value={qContent.qContentId}
                             />
-                            <label htmlFor="push-everything" className="ml-3 block text-sm font-medium text-gray-700">
+                            <label htmlFor="push-everything" className="block ml-3 text-sm font-medium text-neutral-700">
                               {qContent.qContentVal}
                             </label>
                           </div>
@@ -81,15 +81,15 @@ export default function Objective(props) {
   else {
     // console.log(props);
     return (
-        <div className="mt-5 border-2 border-gray-100 rounded-2xl shadow-lg">
-          <div className="text-lg bg-fdyellowbright text-gray-900 indent-3">
+        <div className="mt-5 border-2 border-gray-100 shadow-lg rounded-2xl dark:border-neutral-600">
+          <div className="text-lg text-neutral-900 bg-fdyellowbright rounded-t-2xl indent-3 dark:bg-neutral-400">
               Question. {props.qNumber}
           </div>
-          <div className="overflow-hidden shadow rounded-2xl">
-            <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
+          <div className="overflow-hidden shadow rounded-b-2xl">
+            <div className="px-4 py-5 space-y-6 bg-white sm:p-6 dark:bg-neutral-700">
               <fieldset>
-                <legend className="contents text-base font-medium text-gray-900">{props.qTitle}</legend>
-                <p className="text-sm text-gray-500">{props.qInfo}</p>
+                <legend className="text-base font-medium text-neutral-900 contents dark:text-fdyellowlight">{props.qTitle}</legend>
+                <p className="text-sm text-neutral-500 dark:text-white">{props.qInfo}</p>
                 <div className="mt-4 space-y-4">
 
                   {props.qContents && props.qContents.map((qContent, idx) => {
@@ -102,13 +102,13 @@ export default function Objective(props) {
                                 id="push-everything"
                                 name={props.qId}
                                 type="radio"
-                                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                className="w-4 h-4 text-indigo-600 border-gray-300 focus:ring-indigo-500"
                                 checked={(idx+1).toString() === props.svyRespContents[index].ansVal[0].qContentId}
                                 readOnly={true}
                                 value={qContent.qContentId}
                             />
                             {/* {JSON.stringify(qContent)} */}
-                            <label htmlFor="push-everything" className="ml-3 block text-sm font-medium text-gray-700">
+                            <label htmlFor="push-everything" className="block ml-3 text-sm font-medium text-neutral-700 dark:text-white">
                               {qContent.qContentVal}
                             </label>
                           </div>

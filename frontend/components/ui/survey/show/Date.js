@@ -41,14 +41,14 @@ export default function DateInput(props) {
     }
     if(props.isModify){
         return (
-            <div className="mt-5 border-2 border-gray-100 shadow-lg rounded-2xl">
-                <div className="text-lg text-gray-900 bg-fdyellowbright indent-3">
+            <div className="mt-5 border-2 border-gray-100 shadow-lg rounded-2xl dark:border-neutral-600">
+                <div className="text-lg text-neutral-900 bg-fdyellowbright indent-3 rounded-t-2xl dark:bg-neutral-400">
                     Question. {props.qNumber}
                 </div>
                 <div className="overflow-hidden shadow rounded-2xl">
                     <div className="px-4 py-5 space-y-6 bg-white sm:p-6">
-                        <legend className="text-base font-medium text-gray-900 contents">{props.qTitle}</legend>
-                        <p className="text-sm text-gray-500">{props.qInfo}</p>
+                        <legend className="text-base font-medium text-neutral-900 contents">{props.qTitle}</legend>
+                        <p className="text-sm text-neutral-500">{props.qInfo}</p>
                         <DatePicker
                             selected={answer}
                             onChange={onChange}
@@ -67,14 +67,14 @@ export default function DateInput(props) {
         }
 
         return (
-            <div className="mt-5 border-2 border-gray-100 shadow-lg rounded-2xl">
-                <div className="text-lg text-gray-900 bg-fdyellowbright indent-3">
+            <div className="mt-5 border-2 border-gray-100 shadow-lg rounded-2xl dark:border-neutral-600">
+                <div className="text-lg text-neutral-900 rounded-t-2xl bg-fdyellowbright indent-3 dark:bg-neutral-400">
                     Question. {props.qNumber}
                 </div>
-                <div className="overflow-hidden shadow rounded-2xl">
-                    <div className="px-4 py-5 space-y-6 bg-white sm:p-6">
-                        <legend className="text-base font-medium text-gray-900 contents">{props.qTitle}</legend>
-                        <p className="text-sm text-gray-500">{props.qInfo}</p>
+                <div className="overflow-hidden shadow rounded-b-2xl">
+                    <div className="px-4 py-5 space-y-6 bg-white sm:p-6 dark:bg-neutral-700">
+                        <legend className="text-base font-medium text-neutral-900 contents dark:text-fdyellowlight">{props.qTitle}</legend>
+                        <p className="text-sm text-neutral-500 dark:text-white">{props.qInfo}</p>
                         <DatePicker
                             selected={props.svyRespContents[index].ansVal[0].resp === "" ? new Date() : parseISOString(props.svyRespContents[index].ansVal[0].resp)}
                             disable={true}

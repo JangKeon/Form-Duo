@@ -7,7 +7,7 @@ import { useRecoilState } from "recoil";
 import { glbSvyContentsState } from "../../../atoms/glbSvyContents.js";
 
 // 설문 참여 페이지
-const DuoPreview = () => {
+const EmotionPreview = () => {
     const router = useRouter();
     const [query, setQuery] = useState(null);
     const [isLoading, setLoading] = useState(false);
@@ -42,6 +42,8 @@ const DuoPreview = () => {
                     await getSurvey(query.svyId);
                     setSvyResContents(JSON.parse(query.svyResContents));
                     setIsResult(true);
+                    // console.log(query.svyResContents);
+                    // console.log("결과분석인 경우");
                     setLoading(false);
                 } else {
                     // 설문 생성에서 실행한 미리보기인 경우
@@ -83,9 +85,9 @@ const DuoPreview = () => {
     return (
         <>
             <PageTitle title={isResult ? "설문결과" : "설문 미리보기"}/>
-            <SurveyPreview svyContents={svyContents} preURL={router.query.preURL} svyId={router.query.svyId} svyResContents = {svyResContents} isModify ={isModify} svyType={"duo"}/>
+            <SurveyPreview svyContents={svyContents} preURL={router.query.preURL} svyId={router.query.svyId} svyResContents = {svyResContents} isModify ={isModify}/>
         </>
     );
 };
 
-export default DuoPreview;
+export default EmotionPreview;

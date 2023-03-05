@@ -36,8 +36,6 @@ export default function SurveyPreview(props) {
 
     if (isLoading) return <div>Loading</div>;
     if (!svyContents || !svyRespContents || !preURL) return <div>Data is not exist.</div>;
-
-    console.log("@@@ svypreview preURL: " + preURL);
     return (
         <div>
             {/* 제목 입력 */}

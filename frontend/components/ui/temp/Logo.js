@@ -11,16 +11,16 @@ import Link from "next/link"
 export default function Logo() {
 
   return (
-    <div className="bg-white">
-      <div className="flex items-center mt-20 bg-white md:h-56">
+    <div>
+      <div className="flex items-center mt-20 md:h-56">
           <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <LazyShow>
               <div className="lg:text-center">
-                <h2 className="text-lg font-semibold text-fdblue">Form Duo</h2>
-                <h1 className="mt-4 text-3xl font-normal leading-normal tracking-tight text-gray-900 sm:text-2xl">
+                <h2 className="text-lg font-semibold text-fdblue dark:text-fdyellowlight">Form Duo</h2>
+                <h1 className="mt-4 text-3xl font-normal leading-normal tracking-tight text-neutral-900 sm:text-2xl dark:text-fdyellow">
                     <span className='font-extrabold'>텍스트</span><span>부터</span> <span className='font-extrabold'>음성&영상</span><span>까지</span>
                 </h1>
-                <p className="mt-3 text-3xl font-bold leading-normal tracking-tight text-gray-900 sm:text-4xl">
+                <p className="mt-3 text-3xl font-bold leading-normal tracking-tight text-neutral-900 sm:text-4xl dark:text-white">
                     새로운 설문 서비스를 경험하세요
                 </p>
               </div>
@@ -32,24 +32,24 @@ export default function Logo() {
       <div className="items-center max-w-2xl px-4 mx-auto sm:px-6 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
         <LazyShow>
           <div>
-            {/* <h2 className="text-3xl font-bold text-center text-gray-900 sm:text-4xl">Form Duo</h2> */}
-            <p className="mt-4 leading-loose text-gray-500">
+            {/* <h2 className="text-3xl font-bold text-center text-neutral-900 sm:text-4xl">Form Duo</h2> */}
+            <p className="mt-4 leading-loose text-neutral-500 dark:text-neutral-400">
                 사용자들에게 좀 더 친화적인, 사용자들과 함께하는 새로운 차원의 설문 서비스를 만들어보면 좋겠다는 생각을 하게 되었고, 그러한 의미를 담아 서비스의 이름을 설문 조사의 ‘Form’ 과 ‘함께’ 라는 뜻의 ‘Duo’를 결합한 “폼듀(Form Duo)”라고 짓게 되었습니다.
             </p>
             <div className='flex mt-16'>
-              <div className="flex items-center justify-center w-1/3 py-6 border-t border-b border-gray-200">
+              <div className="flex items-center justify-center w-1/3 py-6 border-t border-b border-gray-200 dark:border-gray-500">
                 <div> 
                   <div className='flex items-center content-center mb-4'>
                     <div className='w-16 h-16 mr-4 bg-fdblue'></div>
-                    <p className='text-lg font-bold tracking-wider text-gray-500'>#7892B0</p>
+                    <p className='text-lg font-bold tracking-wider text-neutral-500 dark:text-neutral-400'>#7892B0</p>
                   </div>
                   <div className='flex items-center content-center'>
                     <div className='w-16 h-16 mr-4 bg-fdyellow'></div>
-                    <p className='text-lg font-bold tracking-wider text-gray-500'>#FFD259</p>
+                    <p className='text-lg font-bold tracking-wider text-neutral-500 dark:text-neutral-400'>#FFD259</p>
                   </div>
                 </div>
               </div>
-              <div className="flex items-center justify-center w-2/3 py-6 border-t border-b border-gray-200">
+              <div className="flex items-center justify-center w-2/3 py-6 border-t border-b border-gray-200 dark:border-gray-500">
                 <div className='content-center justify-center w-full px-16 '> 
                   <div className='flex items-center content-center mb-8 place-content-between'>
                     <Image src={logoIcon} className="w-16 h-auto "/>
@@ -72,8 +72,8 @@ export default function Logo() {
       {/* color */}
       {/* <div className="grid items-center max-w-2xl grid-cols-1 px-4 py-12 mx-auto gap-y-16 gap-x-8 sm:px-6 sm:py-16 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Colors</h2>
-          <p className="mt-4 text-gray-500">
+          <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">Colors</h2>
+          <p className="mt-4 text-neutral-500">
             The walnut wood card tray is precision milled to perfectly fit a stack of Focus cards. The powder coated
             steel divider separates active cards from new ones, or can be used to archive important task lists.
           </p>
@@ -81,8 +81,8 @@ export default function Logo() {
           <dl className="grid grid-cols-1 mt-16 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
             {features.map((feature) => (
               <div key={feature.name} className="pt-4 border-t border-gray-200">
-                <dt className="font-medium text-gray-900">{feature.name}</dt>
-                <dd className="mt-2 text-sm text-gray-500">{feature.description}</dd>
+                <dt className="font-medium text-neutral-900">{feature.name}</dt>
+                <dd className="mt-2 text-sm text-neutral-500">{feature.description}</dd>
               </div>
             ))}
           </dl>

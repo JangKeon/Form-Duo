@@ -88,7 +88,7 @@ export default function Conversation(props) {
 
     return (
         <div>
-            <p className="lg:text-center mt-3 text-3xl font-bold leading-normal tracking-tight text-gray-900 sm:text-4xl">
+            <p className="lg:text-center mt-3 text-3xl font-bold leading-normal tracking-tight text-neutral-900 sm:text-4xl">
                     응답 발화 분석 차트
                 </p>
             <Piechart 
@@ -215,7 +215,7 @@ export default function Conversation(props) {
 
     return (
         <div>
-            <p className="lg:text-center mt-3 text-3xl font-bold leading-normal tracking-tight text-gray-900 sm:text-4xl">
+            <p className="lg:text-center mt-3 text-3xl font-bold leading-normal tracking-tight text-neutral-900 sm:text-4xl">
                     응답 발화 분석 차트
                 </p>
             <Piechart 

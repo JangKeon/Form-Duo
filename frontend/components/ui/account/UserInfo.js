@@ -20,27 +20,27 @@ export default function UserInfo() {
   const [isFailModalOpen, setIsFailModalOpen] = useState(false)
   const [isUserInfoChgModalOpen, setIsUserInfoChgModalOpen] = useState(false)
 
-  const [pwdCheckState, setPwdCheckState] = useState(false);
-  
-  const [btnState, setBtnState] = useState(false);
+  const [btnState, setBtnState] = useState(true);
 
   const [acctoken,setAcctoken] = useRecoilState(accToken);
-  
+
+  const [isPassword, setIsPassword] = useState(false);
+  const [passwordMessage, setPasswordMessage] = useState('');
+
   useEffect(() => {
     setLoading(true)
     getUserInfo()
-    setPwdCheckState(false)
   }, [])
 
   useEffect(() => {
     // console.log((userName.length > 0)+" / "+(userEmail.length > 0)+" / "+(!pwdCheckState))
-    if((userEmail.length > 0)&&(userName.length > 0)&&(pwdCheckState))
+    if(userName.length > 0)
     {
       setBtnState(true);
     } else {
       setBtnState(false);
     }
-  }, [userEmail, userName, pwdCheckState])
+  }, [userEmail, userName])
 
   useEffect(() => {
     pwdCheck();
@@ -75,7 +75,10 @@ export default function UserInfo() {
 
   async function updateUser(data){
       try{
-          const result = await axios.put(process.env.NEXT_PUBLIC_API_URL + '/api/v1/members',data);
+          const result = await axios.put(process.env.NEXT_PUBLIC_API_URL + '/api/v1/members',data,{
+              headers: {
+                  'Authorization': `Bearer ${acctoken}`
+              }});
           setIsUserInfoChgModalOpen(false)
           location.reload();
       }catch (e) {
@@ -101,28 +104,36 @@ export default function UserInfo() {
         console.log(e);
     }
   }
-  
+
   function pwdCheck() {
-    if(userPwd == userPwdCheck) {
-      setPwdCheckState(true);
-    } else {
-      setPwdCheckState(false)
-    }
+      const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
+
+      if (!passwordRegex.test(userPwd)) {
+          setPasswordMessage('‼️숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요‼️')
+          setIsPassword(false)
+      } else if(userPwd !== userPwdCheck){
+          setPasswordMessage('비밀번호가 달라요. 다시 확인해주세요😢')
+          setIsPassword(false)
+      } else {
+          setPasswordMessage('안전한 비밀번호에요 ✅')
+          setIsPassword(true)
+      }
+
   }  
 
   return (
-    <div className="flex items-center justify-center bg-white mt-28">
+    <div className="flex items-center justify-center mt-28">
       <div className="flex overflow-hidden rounded-full h-36 w-36 custom-profile-position bg-neutral-300">
         <Image
           src={userBasicImg}
           className="w-100 h-100"/>
       </div>
-      <div className="flex items-center justify-start w-1/3 bg-white ml-14 md:h-56">
+      <div className="flex items-center justify-start w-1/3 ml-14 md:h-56">
         <div className="sm:text-center lg:text-left">
-          <h1 className="text-xl font-extrabold tracking-tight text-gray-900 sm:text-2xl md:text-2xl" data-testid="name">
+          <h1 className="text-xl font-extrabold tracking-tight text-neutral-900 sm:text-2xl md:text-2xl dark:text-white" data-testid="name">
             {userData.username}
           </h1>
-          <p className="mt-2 text-base text-gray-500 sm:mx-auto sm:mt-2 sm:max-w-xl sm:text-base md:mt-2 md:text-lg lg:mx-0">
+          <p className="mt-2 text-base text-neutral-500 sm:mx-auto sm:mt-2 sm:max-w-xl sm:text-base md:mt-2 md:text-lg lg:mx-0">
             {userData.email}
           </p>
           <div className="mt-5 sm:mt-5 sm:flex sm:justify-center lg:justify-start">
@@ -166,15 +177,15 @@ export default function UserInfo() {
                   <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                   <Dialog.Title
                       as="h3"
-                      className="text-lg font-extrabold leading-6 text-gray-900"
+                      className="text-lg font-extrabold leading-6 text-neutral-900"
                       data-testid="modify"
                   >
                       개인정보 수정
                   </Dialog.Title>
-                  <div className="px-2 py-5 bg-white">
+                  <div className="px-2 py-5">
                       <div className="grid grid-cols-6 gap-2">
                           <div className="col-span-6">
-                          <label htmlFor="userName" className="block text-xs font-medium text-gray-500">
+                          <label htmlFor="userName" className="block text-xs font-medium text-neutral-500">
                               이름 
                           </label>
                           <input
@@ -189,7 +200,7 @@ export default function UserInfo() {
                           </div>
 
                           <div className="col-span-6 mt-2">
-                          <label htmlFor="userEmail" className="block text-xs font-medium text-gray-500">
+                          <label htmlFor="userEmail" className="block text-xs font-medium text-neutral-500">
                               이메일
                           </label>
                           <input
@@ -204,7 +215,7 @@ export default function UserInfo() {
                           </div>
 
                           <div className="col-span-3 mt-2">
-                          <label htmlFor="userPwd" className="block text-xs font-medium text-gray-500">
+                          <label htmlFor="userPwd" className="block text-xs font-medium text-neutral-500">
                               비밀번호
                           </label>
                           <input
@@ -217,7 +228,7 @@ export default function UserInfo() {
                           </div>
                           
                           <div className="col-span-3 mt-2">
-                          <label htmlFor="userPwdCheck" className="block text-xs font-medium text-gray-500">
+                          <label htmlFor="userPwdCheck" className="block text-xs font-medium text-neutral-500">
                               비밀번호 확인
                           </label>
                           <input
@@ -228,18 +239,10 @@ export default function UserInfo() {
                               onChange={(e) => setUserPwdCheck(e.target.value)}
                           />
                           </div>
-
-                          {
-                            !pwdCheckState
-                            ? 
-                            <div className="col-span-6">
-                              <p className="text-xs text-red-600">비밀번호와 일치한 비밀번호 확인을 입력하세요</p>
-                            </div>
-                            :
-                            <></>
-                          }
-
                       </div>
+                      {userPwd.length > 0 && (
+                          <span className={`message ${isPassword ? 'success text-xs' : 'error text-xs text-red-500'}`}>{passwordMessage}</span>
+                      )}
                   </div>
 
                   <div className="flex justify-center mt-4">
@@ -255,8 +258,8 @@ export default function UserInfo() {
                           type="button"
                           className="inline-flex justify-center px-2 py-2 mx-2 text-xs font-semibold text-blue-900 bg-blue-100 border border-transparent rounded-md disabled:bg-neutral-200 disabled:text-neutral-300 hover:bg-blue-200 focus:outline-none "
                           onClick={updateUserInfo}
-                          disabled={!btnState}
-                          >
+                          disabled={!(btnState && isPassword)}
+                      >
                           저장하기
                       </button>
                   </div>
@@ -296,12 +299,12 @@ export default function UserInfo() {
                   <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                   <Dialog.Title
                       as="h3"
-                      className="text-lg font-extrabold leading-6 text-gray-900"
+                      className="text-lg font-extrabold leading-6 text-neutral-900"
                   >
                       사용자 정보 수정 실패
                   </Dialog.Title>
                   <div className="mt-2">
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-neutral-500">
                       사용자 정보 수정에 실패하였습니다. 잠시후 다시 시도해주세요
                       </p>
                   </div>

@@ -9,10 +9,10 @@ const Basic = () => {
             <LazyShow>
                 <div className="mx-8 my-44">
                     <div className="lg:text-center">
-                        <p className="mt-2 text-3xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl">
+                        <p className="mt-2 text-3xl font-bold leading-8 tracking-tight text-neutral-900 sm:text-4xl">
                             설문 제작이 완료되었습니다
                         </p>
-                        <p className="max-w-2xl mt-4 text-xl text-gray-500 lg:mx-auto">
+                        <p className="max-w-2xl mt-4 text-xl text-neutral-500 lg:mx-auto">
                             설문을 공유하여 응답을 받고, 설문 분석 결과를 확인할 수 있습니다👍
                         </p>
 

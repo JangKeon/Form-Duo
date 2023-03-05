@@ -30,11 +30,11 @@ const Features = () => {
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="lg:text-center">
           <h2
-            className="text-base font-semibold tracking-wide uppercase text-fdblue"
+            className="text-base font-semibold tracking-wide uppercase text-fdblue dark:text-fdyellowlight"
           >
             Features 
           </h2>
-          <p className="mt-2 text-3xl font-extrabold leading-8 tracking-tight text-gray-900 sm:text-4xl">
+          <p className="mt-2 text-3xl font-extrabold leading-8 tracking-tight text-neutral-900 sm:text-4xl dark:text-white">
             폼듀에서는 이런 것들이 가능합니다!
           </p>
         </div>
@@ -45,15 +45,15 @@ const Features = () => {
               <div key={feature.name} className="relative">
                 <dt>
                   <div
-                    className="absolute flex items-center justify-center w-12 h-12 rounded-md bg-fdblue bg-background text-tertiary border-fdblue"
+                    className="absolute flex items-center justify-center w-12 h-12 rounded-md bg-fdblue bg-background text-tertiary border-fdblue dark:bg-fdyellowlight"
                   >
-                    <feature.icon className="inline-block w-6 h-6 text-white"/>
+                    <feature.icon className="inline-block w-6 h-6 text-white dark:text-neutral-700"/>
                   </div>
-                  <p className="ml-16 text-lg font-semibold leading-6 text-gray-900">
+                  <p className="ml-16 text-lg font-semibold leading-6 text-neutral-900 dark:text-fdyellowlight">
                     {feature.name}
                   </p>
                 </dt>
-                <dd className="mt-2 ml-16 text-base text-gray-500">
+                <dd className="mt-2 ml-16 text-base text-neutral-500 dark:text-neutral-400">
                   {feature.description}
                 </dd>
               </div>

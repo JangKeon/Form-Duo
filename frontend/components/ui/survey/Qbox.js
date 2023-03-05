@@ -320,20 +320,20 @@ const Qbox = ({show, onHide, setSvyContents, svyContents, questionId}) => {
                                                                 <Disclosure>
                                                                     {({ open }) => (
                                                                         <>
-                                                                            <Disclosure.Button className="flex w-full justify-between rounded-lg bg-fdbluelight px-4 py-2 text-left text-sm font-medium text-gray-800 hover:bg-fdblue focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                                                                            <Disclosure.Button className="flex w-full justify-between rounded-lg bg-fdbluelight px-4 py-2 text-left text-sm font-medium text-neutral-800 hover:bg-fdblue focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
                                                                                 <h3 className="text-sm font-medium leading-7 float-left">
                                                                                     {question.qTitle}
                                                                                 </h3>
-                                                                                <ul className="mt-2 flex float-right space-x-2 text-xs font-normal leading-4 text-gray-500">
+                                                                                <ul className="mt-2 flex float-right space-x-2 text-xs font-normal leading-4 text-neutral-500">
                                                                                     <li>{question.name}</li>
                                                                                 </ul>
                                                                                 <ChevronUpIcon
                                                                                     className={`${
                                                                                         open ? 'rotate-180 transform' : ''
-                                                                                    } h-5 w-5 text-gray-800`}
+                                                                                    } h-5 w-5 text-neutral-800`}
                                                                                 />
                                                                             </Disclosure.Button>
-                                                                            <Disclosure.Panel className="px-2 pt-2 pb-2 text-sm text-gray-500">
+                                                                            <Disclosure.Panel className="px-2 pt-2 pb-2 text-sm text-neutral-500">
                                                                                 {/*선택 된 Question 데이터 넣어서 보여주기*/}
                                                                                 <QboxQuestion
                                                                                     qId={question.qId}

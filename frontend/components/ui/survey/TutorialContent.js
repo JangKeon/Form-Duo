@@ -30,8 +30,8 @@ export default function TutorialContent() {
         <div className="justify-center ml-15 mr-15">
             <LazyShow>
                 <div className="mt-10 mb-20 lg:text-center">
-                    <h2 className="text-lg font-semibold text-fdblue">새로운 차원의 설문조사,</h2>
-                    <p className="mt-3 text-3xl font-bold leading-normal tracking-tight text-gray-900 sm:text-4xl">
+                    <h2 className="text-lg font-semibold text-fdblue dark:text-white">새로운 차원의 설문조사,</h2>
+                    <p className="mt-3 text-3xl font-bold leading-normal tracking-tight text-neutral-900 sm:text-4xl dark:text-fdyellowlight">
                         폼듀 설문 제작 튜토리얼
                     </p>
                 </div>
@@ -42,10 +42,10 @@ export default function TutorialContent() {
                         src={menu}
                         className="col-span-1" />
                     <div className='col-span-1 ml-10'>
-                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-gray-900 sm:text-4xl">
+                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-neutral-900 sm:text-4xl dark:text-fdyellowbright">
                             Step 1
                         </p>
-                        <p className='text-xl leading-loose text-gray-600'>
+                        <p className='text-xl leading-loose text-neutral-600 dark:text-white'>
                             홈페이지 상단 메뉴에서<br />제작하고자 하는 설문 유형을 선택합니다.
                         </p>
                     </div>
@@ -55,12 +55,12 @@ export default function TutorialContent() {
                 <div className="grid items-center grid-cols-2 mb-20">
 
                     <div className='col-span-1 ml-10'>
-                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-gray-900 sm:text-4xl">
+                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-neutral-900 sm:text-4xl dark:text-fdyellowbright">
                             Step 2
                         </p>
-                        <p className='text-xl leading-loose text-gray-600'>
+                        <p className='text-xl leading-loose text-neutral-600 dark:text-white'>
                             설문 제목과 설문 설명을 입력한 후,<br />
-                            <strong className="font-semibold text-fdblue">추가하기</strong> 버튼을 통해 원하는 문항 유형을 추가합니다.
+                            <strong className="font-semibold text-fdblue dark:text-fdyellow">추가하기</strong> 버튼을 통해 원하는 문항 유형을 추가합니다.
                         </p>
                     </div>
                     <Image
@@ -72,10 +72,10 @@ export default function TutorialContent() {
                 <div className="grid items-center grid-cols-2 mb-20">
 
                     <div className='col-span-1 ml-10'>
-                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-gray-900 sm:text-4xl">
+                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-neutral-900 sm:text-4xl dark:text-fdyellowbright">
 
                         </p>
-                        <p className='text-xl leading-loose text-gray-600'>
+                        <p className='text-xl leading-loose text-neutral-600 dark:text-white'>
                             객관식 / 주관식 / 체크박스 / 드롭박스 / 날짜 <br />총 5가지의 유형이 제공됩니다.
                         </p>
                     </div>
@@ -91,10 +91,10 @@ export default function TutorialContent() {
                         className="col-span-1" />
 
                     <div className='col-span-1 ml-10'>
-                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-gray-900 sm:text-4xl">
+                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-neutral-900 sm:text-4xl dark:text-fdyellowbright">
                             Step 3
                         </p>
-                        <p className='text-xl leading-loose text-gray-600'>
+                        <p className='text-xl leading-loose text-neutral-600 dark:text-white'>
                             각 문항에 대한 질문과 부가 설명을 입력합니다.
                         </p>
                     </div>
@@ -108,10 +108,10 @@ export default function TutorialContent() {
                         className="col-span-1" />
 
                     <div className='col-span-1 ml-10'>
-                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-gray-900 sm:text-4xl">
+                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-neutral-900 sm:text-4xl">
                         </p>
-                        <p className='text-xl leading-loose text-gray-600'>
-                            객관식, 체크박스, 드롭박스 유형은<br /><strong className="font-semibold text-fdblue">선택지 추가하기</strong> 버튼을 통해 선택지를 입력합니다.
+                        <p className='text-xl leading-loose text-neutral-600 dark:text-white'>
+                            객관식, 체크박스, 드롭박스 유형은<br /><strong className="font-semibold text-fdblue dark:text-fdyellow">선택지 추가하기</strong> 버튼을 통해 선택지를 입력합니다.
                         </p>
                     </div>
 
@@ -121,12 +121,12 @@ export default function TutorialContent() {
                 <div className="grid items-center grid-cols-2 mb-20">
 
                     <div className='col-span-1 ml-10'>
-                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-gray-900 sm:text-4xl">
+                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-neutral-900 sm:text-4xl dark:text-fdyellowbright">
                             Step 4
                         </p>
-                        <p className='text-xl leading-loose text-gray-600'>
+                        <p className='text-xl leading-loose text-neutral-600 dark:text-white'>
                             설문 제작을 완료하였다면,<br />
-                            <strong className="font-semibold text-fdblue">설문 미리보기</strong> 버튼을 통해 제작된 설문지를 확인할 수 있습니다.
+                            <strong className="font-semibold text-fdblue dark:text-fdyellow">설문 미리보기</strong> 버튼을 통해 제작된 설문지를 확인할 수 있습니다.
                         </p>
                     </div>
                     <Image
@@ -148,11 +148,11 @@ export default function TutorialContent() {
                         className="col-span-1" />
 
                     <div className='col-span-1 ml-10'>
-                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-gray-900 sm:text-4xl">
+                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-neutral-900 sm:text-4xl dark:text-fdyellowbright">
                             Step 5
                         </p>
-                        <p className='text-xl leading-loose text-gray-600'>
-                            마지막으로 <strong className="font-semibold text-fdblue">설문 저장하기</strong> 버튼을 통해<br />제작한 설문을 저장합니다.
+                        <p className='text-xl leading-loose text-neutral-600 dark:text-white'>
+                            마지막으로 <strong className="font-semibold text-fdblue dark:text-fdyellow">설문 저장하기</strong> 버튼을 통해<br />제작한 설문을 저장합니다.
                         </p>
                     </div>
 
@@ -164,13 +164,13 @@ export default function TutorialContent() {
                         src={saveChildPopup}
                         className="col-span-1" />
                     <div className='col-span-1 ml-10'>
-                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-gray-900 sm:text-4xl">
+                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-neutral-900 sm:text-4xl dark:text-fdyellowbright">
                         </p>
-                        <p className='text-xl leading-loose text-gray-600'>
-                            <strong className="font-semibold text-fdblue">설문 시작일</strong>과
-                            <strong className="font-semibold text-fdblue"> 마감일</strong>,
-                            <br /> <strong className="font-semibold text-fdblue">제출 안내 메시지</strong>와
-                            <strong className="font-semibold text-fdblue"> 제한 응답자 수</strong>를 설정할 수 있습니다.
+                        <p className='text-xl leading-loose text-neutral-600 dark:text-white'>
+                            <strong className="font-semibold text-fdblue dark:text-fdyellow">설문 시작일</strong>과
+                            <strong className="font-semibold text-fdblue dark:text-fdyellow"> 마감일</strong>,
+                            <br /> <strong className="font-semibold text-fdblue dark:text-fdyellow">제출 안내 메시지</strong>와
+                            <strong className="font-semibold text-fdblue dark:text-fdyellow"> 제한 응답자 수</strong>를 설정할 수 있습니다.
                         </p>
                     </div>
                 </div>
@@ -179,12 +179,12 @@ export default function TutorialContent() {
                 <div className="grid items-center grid-cols-2 mb-20">
 
                     <div className='col-span-1 ml-10'>
-                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-gray-900 sm:text-4xl">
+                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-neutral-900 sm:text-4xl dark:text-fdyellowbright">
                             Step 6
                         </p>
-                        <p className='text-xl leading-loose text-gray-600'>
+                        <p className='text-xl leading-loose text-neutral-600 dark:text-white'>
                             제작한 설문들은<br />
-                            홈페이지 상단 메뉴 <strong className="font-semibold text-fdblue">설문 목록</strong>에서 확인할 수 있습니다.
+                            홈페이지 상단 메뉴 <strong className="font-semibold text-fdblue dark:text-fdyellow">설문 목록</strong>에서 확인할 수 있습니다.
                         </p>
                     </div>
                     <Image
@@ -196,12 +196,12 @@ export default function TutorialContent() {
                 <div className="grid items-center grid-cols-2 mb-20">
 
                     <div className='col-span-1 ml-10'>
-                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-gray-900 sm:text-4xl">
+                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-neutral-900 sm:text-4xl dark:text-fdyellowbright">
 
                         </p>
-                        <p className='text-xl leading-loose text-gray-600'>
+                        <p className='text-xl leading-loose text-neutral-600 dark:text-white'>
                             설문별 더보기란을 클릭하면,<br />
-                            <strong className="font-semibold text-fdblue">설문 수정 / 분석 / 삭제 / 공유 / 미리보기</strong>를 할 수 있습니다.
+                            <strong className="font-semibold text-fdblue dark:text-fdyellow">설문 수정 / 분석 / 삭제 / 공유 / 미리보기</strong>를 할 수 있습니다.
                         </p>
                     </div>
                     <Image
@@ -216,12 +216,12 @@ export default function TutorialContent() {
                         className="col-span-1" />
 
                     <div className='col-span-1 ml-10'>
-                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-gray-900 sm:text-4xl">
+                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-neutral-900 sm:text-4xl dark:text-fdyellowbright">
                             Step 7
                         </p>
-                        <p className='text-xl leading-loose text-gray-600'>
-                            <strong className="font-semibold text-fdblue">QR코드</strong>와
-                            <strong className="font-semibold text-fdblue"> 링크</strong>를 통해 설문을 공유할 수 있습니다.
+                        <p className='text-xl leading-loose text-neutral-600 dark:text-white'>
+                            <strong className="font-semibold text-fdblue dark:text-fdyellow">QR코드</strong>와
+                            <strong className="font-semibold text-fdblue dark:text-fdyellow"> 링크</strong>를 통해 설문을 공유할 수 있습니다.
                         </p>
                     </div>
 
@@ -231,11 +231,11 @@ export default function TutorialContent() {
                 <div className="grid items-center grid-cols-2 mb-20">
 
                     <div className='col-span-1 ml-10'>
-                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-gray-900 sm:text-4xl">
+                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-neutral-900 sm:text-4xl dark:text-fdyellowbright">
                             Step 8
                         </p>
-                        <p className='text-xl leading-loose text-gray-600'>
-                            <strong className="font-semibold text-fdblue">설문 분석</strong>을 통해 피설문자들의 응답 내역을 확인할 수 있습니다.
+                        <p className='text-xl leading-loose text-neutral-600 dark:text-white'>
+                            <strong className="font-semibold text-fdblue dark:text-fdyellow">설문 분석</strong>을 통해 피설문자들의 응답 내역을 확인할 수 있습니다.
                         </p>
                     </div>
                     <Image
@@ -249,10 +249,10 @@ export default function TutorialContent() {
                         src={analyze_chart}
                         className="col-span-1" />
                     <div className='col-span-1 ml-10'>
-                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-gray-900 sm:text-4xl">
+                        <p className="mt-3 mb-3 text-3xl font-bold leading-normal tracking-tight text-neutral-900 sm:text-4xl dark:text-fdyellowbright">
                             Step 9
                         </p>
-                        <p className='text-xl leading-loose text-gray-600'>
+                        <p className='text-xl leading-loose text-neutral-600 dark:text-white'>
                             설문 응답에 대한 발화 분석을 통해<br />한 눈에 설문에 대한 평가를 볼 수 있습니다.
                         </p>
                     </div>

@@ -16,16 +16,16 @@ import Respond from "./input/Respond.js";
 import "react-datepicker/dist/react-datepicker.css";
 
 const qTypes = [
-    { name: '객관식', comp: "Objective", contentYn: true },
+    //{ name: '객관식', comp: "Objective", contentYn: true },
     { name: '주관식', comp: "Subjective", contentYn: false },
-    { name: '체크박스', comp: "Checkbox", contentYn: true },
-    { name: '드롭박스', comp: "Dropbox", contentYn: true },
-    { name: '날짜', comp: "Date", contentYn: false },
+    // { name: '체크박스', comp: "Checkbox", contentYn: true },
+    // { name: '드롭박스', comp: "Dropbox", contentYn: true },
+    // { name: '날짜', comp: "Date", contentYn: false },
     // { name: '평점', comp: "Rating", contentYn: false },
     // { name: '파일', comp: "File", contentYn: false },
 ]
 
-export default function BasicSurveyCreate() {
+export default function EmotionSurveyCreate() {
 
     const router = useRouter()
     const currentURL = router.asPath;
@@ -129,7 +129,7 @@ export default function BasicSurveyCreate() {
         setIsSettingModalOpen(false)
     }
 
-    function saveBasicSurvey() {
+    function saveEmotionSurvey() {
 
         const data = new Object();
 
@@ -149,7 +149,7 @@ export default function BasicSurveyCreate() {
         data.svySt = "";
         data.svyRespMax = svyRespMax;
         data.svyRespCount = 0;
-        data.svyType= "basic";
+        data.svyType= "emotion";
 
         if (isSettingModalOpen) {
             closeSettingModal();
@@ -205,12 +205,12 @@ export default function BasicSurveyCreate() {
     }
 
     function showPreview() {
-        const data = saveBasicSurvey();
+        const data = saveEmotionSurvey();
         setGlbSvyContents(data);
         router.push({
             pathname: '/survey/preview/basic',
             query: { svyContent: JSON.stringify(data), preURL: currentURL }
-        }, '/survey/preview/basic');
+        }, '/survey/preview/emotion');
     }
 
     return (
@@ -273,17 +273,17 @@ export default function BasicSurveyCreate() {
                 <div className="overflow-hidden shadow bg-neutral-200 rounded-2xl dark:bg-neutral-400">
                     <div className="px-4 py-5 space-y-6 sm:p-6">
                         <h2 className="font-bold">문항 추가</h2>
-                        <div className="grid grid-cols-7 gap-4">
+                        <div className="grid grid-cols-6 gap-4">
                             <div className="col-span-6 sm:col-span-5">
                                 <Listbox value={selected} onChange={setSelected}>
                                     <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm dark:text-neutral-600">
-                                            <span className="block truncate">{selected.name}</span>
-                                            <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                                        <span className="block truncate">{selected.name}</span>
+                                        <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                                             <ChevronUpDownIcon
                                                 className="w-5 h-5 text-neutral-400"
                                                 aria-hidden="true"
                                             />
-                                            </span>
+                                        </span>
                                     </Listbox.Button>
                                     <Transition
                                         as={Fragment}
@@ -329,17 +329,11 @@ export default function BasicSurveyCreate() {
                             >
                                 추가하기
                             </button>
-                            <button
-                                type="button"
-                                className="inline-flex items-center justify-center col-span-6 text-sm font-medium text-white duration-200 border border-transparent rounded-md shadow-sm sm:col-span-1 bg-fdblue hover:bg-fdbluedark hover:scale-105 dark:bg-fdyellowlight dark:text-neutral-600 dark:hover:bg-fdyellow"
-                                onClick={openQboxModal}
-                            >
-                                Q-Box
-                            </button>
                         </div>
                     </div>
                 </div>
             </div>
+
 
             {/* 하단 버튼 */}
             <div className="flex justify-center m-7">
@@ -558,7 +552,7 @@ export default function BasicSurveyCreate() {
                                                 <button
                                                     type="button"
                                                     className="inline-flex justify-center px-2 py-2 mx-2 text-xs font-semibold text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none "
-                                                    onClick={saveBasicSurvey}
+                                                    onClick={saveEmotionSurvey}
                                                 >
                                                     저장하기
                                                 </button>

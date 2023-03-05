@@ -56,7 +56,7 @@ export default function SurveyResults(props) {
     return (
         <>
             <Stack alignItems="center">
-                <h1>총 응답 수 : {props.resPeople} / {props.maxResPeople}</h1>
+                <h1 className="dark:text-neutral-200">총 응답 수 : {props.resPeople} / {props.maxResPeople}</h1>
                 <ResponseTable surveyId={props.resContents[0].svyId} svyType={props.svyType} contents={rows} />
                 <br />
                 {props.svyType !== "duo" ? <>

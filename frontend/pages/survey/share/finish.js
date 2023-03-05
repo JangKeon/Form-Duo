@@ -1,59 +1,28 @@
 import PageTitle from "../../../components/ui/PageTitle";
 import React from "react";
 import Link from "next/link";
-import { useRouter } from 'next/router'
+import { useRouter, withRouter } from 'next/router'
 import { useEffect, useState } from 'react';
 import LazyShow from "../../../components/common/LazyShow"
 import Loading from "../../../components/common/Loading";
 
-const Basic = () => {
-
-    // const router = useRouter();
-    // const [query, setQuery] = useState(null);
-    // const [isLoading, setLoading] = useState(false);
-    // const [endMessage, setEndMessage] = useState("감사합니다👍");
-
-    // useEffect(() => {
-    //     setLoading(true)
-    //     getQuery();
-    // }, [query])
-
-    // if (isLoading) return <Loading />;
-    // if (query == undefined) return <Loading />;
-
-    // async function getQuery() {
-    //     try {
-    //         // 쿼리 가져오기
-    //         console.log("###### query: " + JSON.stringify(router.query));
-    //         console.log("###### endMessage: " + router.query.endMsg);
-            
-    //         setQuery(router.query)
-    //         setEndMessage(JSON.parse(query.endMsg));
-    //         setLoading(false);
-    //     } catch (e) {
-    //         console.log(e);
-    //     }
-    // }
-
+const Finish = (props) => {
     
-    const [endMessage, setEndMessage] = useState(null);
+    const [endMessage, setEndMessage] = useState("");
 
     useEffect(() => {
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const endMsg = urlParams.get('endMsg');
-        setEndMessage(endMsg);
-    }, [])
+        setEndMessage(props.router.query.endMsg);
+    }, [props.router.query.endMsg]);
 
     return (
         <div>
             <LazyShow>
                 <div className="mx-8 my-44">
                     <div className="lg:text-center">
-                        <p className="mt-2 text-3xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl">
+                        <p className="mt-2 text-3xl font-bold leading-8 tracking-tight text-neutral-900 sm:text-4xl">
                             설문 응답이 완료되었습니다
                         </p>
-                        <p className="max-w-2xl mt-4 text-xl text-gray-500 lg:mx-auto">
+                        <p className="max-w-2xl mt-4 text-xl text-neutral-500 lg:mx-auto">
                             {endMessage}
                         </p>
 
@@ -79,4 +48,15 @@ const Basic = () => {
     );
 };
 
-export default Basic;
+// export async function getServerSideProps(context) {
+
+//     const endMsg = context.query.endMsg;
+
+//     return {
+//         props: {
+//             endMsg: endMsg,
+//         },
+//     };
+// }
+
+export default withRouter(Finish);

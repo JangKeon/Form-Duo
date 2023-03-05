@@ -178,7 +178,7 @@ export default function DuoSurveyCreate() {
             comp: selected.comp,
             contentYn: selected.contentYn,
         };
-        setSvyContents(svyContents.concat(svyContent));
+        setSvyContents(Array.isArray(svyContents) ? svyContents.concat(svyContent) : null);
         questionId.current += 1; // nextId 1 씩 더하기
     }
 
@@ -192,7 +192,7 @@ export default function DuoSurveyCreate() {
         router.push({
             pathname: '/survey/preview/duo',
             query: { svyContent: JSON.stringify(data), preURL: currentURL, create: true }
-        });
+        }, '/survey/preview/duo');
     }
 
 
@@ -246,18 +246,18 @@ export default function DuoSurveyCreate() {
             }
 
             {/* 문항 추가 */}
-            <div className="mt-5 border-2 border-gray-100 shadow-lg rounded-2xl">
-                <div className="overflow-hidden shadow bg-neutral-200 rounded-2xl">
+            <div className="mt-5 border-2 border-gray-100 shadow-lg rounded-2xl dark:border-neutral-500">
+                <div className="overflow-hidden shadow bg-neutral-200 rounded-2xl dark:bg-neutral-400">
                     <div className="px-4 py-5 space-y-6 sm:p-6">
                         <h2 className="font-bold">문항 추가</h2>
                         <div className="grid grid-cols-6 gap-4">
                             <div className="col-span-6 sm:col-span-5">
                                 <Listbox value={selected} onChange={setSelected}>
-                                    <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+                                    <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm dark:text-neutral-600">
                                         <span className="block truncate">{selected.name}</span>
                                         <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                                             <ChevronUpDownIcon
-                                                className="w-5 h-5 text-gray-400"
+                                                className="w-5 h-5 text-neutral-400"
                                                 aria-hidden="true"
                                             />
                                         </span>
@@ -273,7 +273,7 @@ export default function DuoSurveyCreate() {
                                                 <Listbox.Option
                                                     key={type.name}
                                                     className={({ active }) =>
-                                                        `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-fdyellowbright text-gray-900' : 'text-gray-900'
+                                                        `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-fdyellowbright text-neutral-900' : 'text-neutral-900'
                                                         }`
                                                     }
                                                     value={type}
@@ -301,7 +301,7 @@ export default function DuoSurveyCreate() {
                             </div>
                             <button
                                 type="button"
-                                className="inline-flex items-center justify-center col-span-6 text-sm font-medium text-white duration-200 border border-transparent rounded-md shadow-sm sm:col-span-1 bg-fdblue hover:bg-fdbluedark hover:scale-105"
+                                className="inline-flex items-center justify-center col-span-6 text-sm font-medium text-white duration-200 border border-transparent rounded-md shadow-sm sm:col-span-1 bg-fdblue hover:bg-fdbluedark hover:scale-105 dark:bg-fdyellowlight dark:text-neutral-600 dark:hover:bg-fdyellow"
                                 onClick={addSelected}
                             >
                                 추가하기
@@ -319,14 +319,14 @@ export default function DuoSurveyCreate() {
                             pathname: '/'
                         }}
                     >
-                        <div className="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white border border-transparent rounded-md bg-neutral-300 hover:bg-neutral-400">
+                        <div className="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white border border-transparent rounded-md bg-neutral-300 hover:bg-neutral-400 dark:bg-neutral-400 dark:hover:bg-neutral-500">
                             취소
                         </div>
                     </Link>
                 </div>
                 <div className="inline-flex mx-2 ml-3 rounded-md shadow">
                     <button onClick={showPreview}>
-                        <div className="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-gray-500 bg-white border border-gray-200 rounded-md hover:bg-neutral-200">
+                        <div className="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-neutral-500 bg-white border border-gray-200 rounded-md hover:bg-neutral-200">
                             설문 미리보기
                         </div>
                     </button>
@@ -334,7 +334,7 @@ export default function DuoSurveyCreate() {
                 <div className="inline-flex mx-2 rounded-md shadow">
                     <a
                         onClick={openSaveModal}
-                        className="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-blue-400 border border-transparent rounded-md hover:bg-blue-500"
+                        className="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-blue-400 border border-transparent rounded-md hover:bg-blue-500 dark:bg-fdyellow dark:hover:bg-fdyellowdark dark:text-neutral-700"
                     >
                         설문 저장하기
                     </a>
@@ -367,12 +367,12 @@ export default function DuoSurveyCreate() {
                                         <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                                             <Dialog.Title
                                                 as="h3"
-                                                className="text-lg font-extrabold leading-6 text-gray-900"
+                                                className="text-lg font-extrabold leading-6 text-neutral-900"
                                             >
                                                 설문 저장
                                             </Dialog.Title>
                                             <div className="mt-2">
-                                                <p className="text-sm text-gray-500">
+                                                <p className="text-sm text-neutral-500">
                                                     작성한 설문을 저장하시겠습니까?
                                                 </p>
                                             </div>
@@ -430,19 +430,19 @@ export default function DuoSurveyCreate() {
                                         <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                                             <Dialog.Title
                                                 as="h3"
-                                                className="text-lg font-extrabold leading-6 text-gray-900"
+                                                className="text-lg font-extrabold leading-6 text-neutral-900"
                                             >
                                                 설문 옵션 설정
                                             </Dialog.Title>
                                             <div className="mt-2">
-                                                <p className="text-sm text-gray-500">
+                                                <p className="text-sm text-neutral-500">
                                                     잠깐만요! 설문을 내보내기 전에 간단한 설정하고 가실게요😊
                                                 </p>
                                             </div>
                                             <div className="px-2 py-5 bg-white">
                                                 <div className="grid grid-cols-7 gap-2">
                                                     <div className="col-span-7 sm:col-span-3">
-                                                        <label htmlFor="svyStartDt" className="block text-xs font-medium text-gray-500">
+                                                        <label htmlFor="svyStartDt" className="block text-xs font-medium text-neutral-500">
                                                             설문 시작일 <span className="text-red-600">*</span>
                                                         </label>
                                                         {/* <input
@@ -466,7 +466,7 @@ export default function DuoSurveyCreate() {
                                                     </div>
 
                                                     <div className="col-span-7 sm:col-span-3">
-                                                        <label htmlFor="svyEndDt" className="block text-xs font-medium text-gray-500">
+                                                        <label htmlFor="svyEndDt" className="block text-xs font-medium text-neutral-500">
                                                             설문 마감일
                                                         </label>
                                                         {/* <input
@@ -487,7 +487,7 @@ export default function DuoSurveyCreate() {
                                                     </div>
 
                                                     <div className="col-span-7 mt-2">
-                                                        <label htmlFor="svyEndMsg" className="block text-xs font-medium text-gray-500">
+                                                        <label htmlFor="svyEndMsg" className="block text-xs font-medium text-neutral-500">
                                                             설문 제출시 안내 메세지
                                                         </label>
                                                         <textarea
@@ -500,7 +500,7 @@ export default function DuoSurveyCreate() {
                                                     </div>
 
                                                     <div className="col-span-7 mt-2">
-                                                        <label htmlFor="svyRespMax" className="block text-xs font-medium text-gray-500">
+                                                        <label htmlFor="svyRespMax" className="block text-xs font-medium text-neutral-500">
                                                             설문 응답자수 제한
                                                         </label>
                                                         <input
@@ -569,12 +569,12 @@ export default function DuoSurveyCreate() {
                                         <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                                             <Dialog.Title
                                                 as="h3"
-                                                className="text-lg font-extrabold leading-6 text-gray-900"
+                                                className="text-lg font-extrabold leading-6 text-neutral-900"
                                             >
                                                 설문 저장 실패
                                             </Dialog.Title>
                                             <div className="mt-2">
-                                                <p className="text-sm text-gray-500">
+                                                <p className="text-sm text-neutral-500">
                                                     설문 저장에 실패하였습니다. 잠시후 다시 시도해주세요
                                                 </p>
                                             </div>

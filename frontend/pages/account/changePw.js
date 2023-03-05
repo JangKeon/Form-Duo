@@ -1,15 +1,14 @@
-import { LockClosedIcon } from '@heroicons/react/20/solid'
-import Image from 'next/future/image';
-import logoIcon from '../../public/img/mixed.png'
-import axios from "axios";
+import Image from "next/future/image";
+import logoIcon from "../../public/img/mixed.png";
+import {LockClosedIcon} from "@heroicons/react/20/solid";
 import {useRouter} from "next/router";
-import {Fragment, useEffect, useRef} from "react";
+import {Fragment, useEffect, useRef, useState} from "react";
+import axios from "axios";
+import {init, send} from "emailjs-com";
+import SignIn from "./signIn";
 import {Dialog, Transition} from "@headlessui/react";
-import {useState} from "react";
 
-import { init,send } from 'emailjs-com';
-
-const SignUp = () =>{
+const ChangePw = () =>{
     let [isOpen, setIsOpen] = useState(false)
     function closeModal() {
         setIsOpen(false)
@@ -18,16 +17,14 @@ const SignUp = () =>{
     function openModal() {
         setIsOpen(true)
     }
-    //회원 가입 오류 모달
+    //회원 오류 모달
     let [isFailOpen, setIsFailOpen] = useState(false)
     function closeFailModal() {
         setIsFailOpen(false)
-        router.push('/account/signIn');
     }
     function openFailModal() {
         setIsFailOpen(true)
     }
-
 
     const router = useRouter();
     const userName = useRef("");
@@ -50,18 +47,11 @@ const SignUp = () =>{
     const [isPassword, setIsPassword] = useState(false)
     const [isPasswordConfirm, setIsPasswordConfirm] = useState(false)
 
-    const onNameChange = (e) => {
-        userName.current = e.target.value;
-        // console.log("userPw : "+userName.current);
-
-
-    };
     const onEmailChange = (e) => {
         const emailRegex =
             /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
         userEmail.current = e.target.value;
         // console.log("Email : "+userEmail.current);
-
         if (!emailRegex.test(userEmail.current)) {
             setEmailMessage('이메일 형식이 틀렸어요. 다시 확인해주세요😢')
             setIsEmail(false)
@@ -76,6 +66,7 @@ const SignUp = () =>{
             setIsEmail(true)
         }
     };
+
     //이메일 인증
     const onAuthChange = (e) => {
         userAuth.current = e.target.value;
@@ -113,6 +104,7 @@ const SignUp = () =>{
             setIsPasswordConfirm(false)
         }
     };
+
     //이미 가입 된 메일인지 확인
     async function isMember(){
         const data = new Object();
@@ -121,30 +113,28 @@ const SignUp = () =>{
         data.email = userEmail.current;
         try{
             const result = await axios.post(process.env.NEXT_PUBLIC_API_URL + '/api/v1/auth/isMember',data);
+            userName.current = result.data.username
             return result;
         }catch (e) {
             console.log(e);
         }
     }
 
-    async function reqSignup(){
+    async function reqChangePw(){
         //입력 창 확인
-        if(!userName.current){
-            alert("😮이름을 입력해주세요.");
-            return <SignUp></SignUp>;
-        } else if(!userEmail.current){
+        if(!userEmail.current){
             alert("😮이메일을 입력해주세요.");
-            return <SignUp></SignUp>;
+            return <ChangePw></ChangePw>;
         } else if(!userPw.current){
             alert("😮비밀번호를 입력해주세요.");
-            return <SignUp></SignUp>;
+            return <ChangePw></ChangePw>;
         } else if(userPw.current !== userPwChk.current){
             alert("😮비밀번호가 일치하지 않습니다. 다시 확인해주세요!");
-            return <SignUp></SignUp>;
+            return <ChangePw></ChangePw>;
         }
 
-        //회원가입 api 호출
-        console.log("SignUp Request");
+        //비밀번호 변경 api 호출
+        console.log("Change Password Request");
         const data = new Object();
         // console.log("userName : " + userName.current);
         // console.log("userEmail : " + userEmail.current);
@@ -153,7 +143,7 @@ const SignUp = () =>{
         data.email = userEmail.current;
         data.password = userPw.current;
         try{
-            const result = await axios.post(process.env.NEXT_PUBLIC_API_URL+"/api/v1/auth/signup", data);
+            const result = await axios.put(process.env.NEXT_PUBLIC_API_URL+"/api/v1/auth/changePw", data);
             //check
             // console.log("Result : " + JSON.stringify(result.data));
             // console.log("User email : "+ result.data["email"]);
@@ -172,9 +162,10 @@ const SignUp = () =>{
 
     const sendAuthMail =()=>{
         isMember().then(r =>{
-            const result = r.data
-            // console.log("Result : "+ JSON.stringify(r))
-            if(!result){
+            const result = r.data.username
+            userName.current = result
+            // console.log("Result : "+ JSON.stringify(r.data))
+            if(result){
                 //인증 중
                 setIsAuthIng(true)
                 // console.log("메일인증")
@@ -191,9 +182,11 @@ const SignUp = () =>{
 
     }
 
+
+
     return (
         <>
-            <div className="flex items-center justify-center min-h-full px-4 py-12 sm:px-6 lg:px-8">
+            <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
                 <div className="w-full max-w-md space-y-8">
                     <div>
                         <Image
@@ -201,30 +194,15 @@ const SignUp = () =>{
                             src={logoIcon}
                             alt="FormDuo"
                         />
-                        <h2 className="mt-5 font-bold tracking-tight text-center text-1xl dark:text-fdyellowlight text-fdblue">
-                            회원 가입
+                        <h2 className="mt-5 text-center text-1xl font-bold tracking-tight text-fdblue">
+                            비밀번호 재설정
                         </h2>
                     </div>
                     <form className="mt-8 space-y-4" action="#" method="POST">
                         <input type="hidden" name="remember" defaultValue="true" />
                         <div className="space-y-4 rounded-md shadow-sm">
                             <div>
-                                <label htmlFor="email-address" className="block ml-2 text-sm text-neutral-900 dark:text-neutral-200">
-                                    사용자 이름
-                                </label>
-                                <input
-                                    id="user-name"
-                                    name="username"
-                                    type="text"
-                                    required
-                                    className="relative block w-full px-3 py-2 text-neutral-900 placeholder-gray-500 border border-gray-300 appearance-none rounded-b-md rounded-t-md focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                    placeholder="User name"
-                                    onChange={onNameChange}
-                                />
-
-                            </div>
-                            <div>
-                                <label htmlFor="email-address" className="block ml-2 text-sm text-neutral-900 dark:text-neutral-200">
+                                <label htmlFor="email-address" className="ml-2 block text-sm text-neutral-900">
                                     이메일 주소
                                 </label>
                                 <input
@@ -233,7 +211,7 @@ const SignUp = () =>{
                                     type="email"
                                     autoComplete="email"
                                     required
-                                    className="relative block w-full px-3 py-2 text-neutral-900 placeholder-gray-500 border border-gray-300 appearance-none rounded-b-md rounded-t-md focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                    className="relative block w-full appearance-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-neutral-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                     placeholder="Email address"
                                     onChange={onEmailChange}
                                 />
@@ -242,13 +220,13 @@ const SignUp = () =>{
                                     type="button"
                                     onClick ={sendAuthMail}
                                     disabled={!(isEmail)}
-                                    className="relative flex justify-center w-full px-4 py-2 mt-2 text-sm font-medium text-white border border-transparent rounded-md group bg-fdbluedark hover:bg-fdblue focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:bg-fdyellowlight dark:text-neutral-700"
+                                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-fdbluedark py-2 px-4 text-sm font-medium text-white hover:bg-fdblue focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                                 >
                                     인증 메일 전송
                                 </button>
                             </div>
                             <div>
-                                <label htmlFor="email-address" className="block ml-2 text-sm text-neutral-900 dark:text-neutral-200">
+                                <label htmlFor="email-address" className="ml-2 block text-sm text-neutral-900">
                                     이메일 인증
                                 </label>
                                 <input
@@ -257,14 +235,14 @@ const SignUp = () =>{
                                     type="text"
                                     required
                                     disabled={!(isAuthIng)}
-                                    className="relative block w-full px-3 py-2 text-neutral-900 placeholder-gray-500 border border-gray-300 appearance-none rounded-b-md rounded-t-md focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                    className="relative block w-full appearance-none rounded-b-md rounded-t-md border border-gray-300 px-3 py-2 text-neutral-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                     placeholder="Authentication Number"
                                     onChange={onAuthChange}
                                 />
                                 {userAuth.current.length > 0 && <span className={`message ${isAuthConfirm ? 'success text-xs' : 'error text-xs text-red-500'}`}>{authMessage}</span>}
                             </div>
                             <div>
-                                <label htmlFor="password" className="block ml-2 text-sm text-neutral-900 dark:text-neutral-200">
+                                <label htmlFor="password" className="ml-2 block text-sm text-neutral-900">
                                     비밀번호
                                 </label>
                                 <input
@@ -273,7 +251,7 @@ const SignUp = () =>{
                                     type="password"
                                     autoComplete="current-password"
                                     required
-                                    className="relative block w-full px-3 py-2 text-neutral-900 placeholder-gray-500 border border-gray-300 appearance-none rounded-t-md rounded-b-md focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                    className="relative block w-full appearance-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-neutral-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                     placeholder="Password"
                                     onChange={onPwChange}
                                 />
@@ -282,7 +260,7 @@ const SignUp = () =>{
                                 )}
                             </div>
                             <div>
-                                <label htmlFor="password" className="block ml-2 text-sm text-neutral-900 dark:text-neutral-200">
+                                <label htmlFor="password" className="ml-2 block text-sm text-neutral-900">
                                     비밀번호 확인
                                 </label>
                                 <input
@@ -291,7 +269,7 @@ const SignUp = () =>{
                                     type="password"
                                     autoComplete="current-password"
                                     required
-                                    className="relative block w-full px-3 py-2 text-neutral-900 placeholder-gray-500 border border-gray-300 appearance-none rounded-t-md rounded-b-md focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                    className="relative block w-full appearance-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-neutral-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                     placeholder="Password Check"
                                     onChange={onPwChkChange}
                                 />
@@ -303,21 +281,21 @@ const SignUp = () =>{
                         <div>
                             <button
                                 type="button"
-                                onClick ={reqSignup}
+                                onClick ={reqChangePw}
                                 disabled={!(isEmail && isPassword && isPasswordConfirm && isAuthConfirm)}
-                                className="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md group bg-fdbluedark hover:bg-fdblue focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:bg-fdyellowlight dark:text-neutral-700"
+                                className="group relative flex w-full justify-center rounded-md border border-transparent bg-fdbluedark py-2 px-4 text-sm font-medium text-white hover:bg-fdblue focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                             >
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                  <LockClosedIcon className="w-5 h-5 text-fdbluelight group-hover:text-fdbluedark dark:text-neutral-700" aria-hidden="true" />
+                  <LockClosedIcon className="h-5 w-5 text-fdbluelight group-hover:text-fdbluedark" aria-hidden="true" />
                 </span>
-                                회원가입
+                                비밀번호 재설정
                             </button>
                         </div>
                     </form>
                 </div>
             </div>
 
-            {/*  signUp Modal */}
+            {/*  changePw Modal */}
             <Transition appear show={isOpen} as={Fragment}>
                 <Dialog as="div" className="relative z-10" onClose={closeModal}>
                     <Transition.Child
@@ -348,11 +326,11 @@ const SignUp = () =>{
                                         as="h3"
                                         className="text-lg font-extrabold leading-6 text-neutral-900"
                                     >
-                                        회원 가입
+                                        비밀번호 재설정
                                     </Dialog.Title>
                                     <div className="mt-2">
                                         <p className="text-sm text-neutral-500">
-                                            회원가입이 완료되었습니다. 로그인 해주세요☺️
+                                            비밀번호가 재설정 되었습니다. 새로운 비밀번호로 로그인 해주세요☺️
                                         </p>
                                     </div>
 
@@ -403,11 +381,11 @@ const SignUp = () =>{
                                         as="h3"
                                         className="text-lg font-extrabold leading-6 text-neutral-900"
                                     >
-                                        회원 가입 오류
+                                        메일 인증 오류
                                     </Dialog.Title>
                                     <div className="mt-2">
                                         <p className="text-sm text-neutral-500">
-                                            이미 등록 된 회원입니다!😢
+                                            해당 메일로 등록 된 계정이 없습니다!😢
                                         </p>
                                     </div>
 
@@ -429,4 +407,4 @@ const SignUp = () =>{
         </>
     )
 }
-export  default SignUp;
+export  default ChangePw;

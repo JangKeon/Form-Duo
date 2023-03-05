@@ -235,7 +235,7 @@ export default function SurveyModify (props) {
         router.push({
             pathname: '/survey/preview/basic',
             query: { svyContent: JSON.stringify(data), preURL: currentURL }
-        });
+        }, '/survey/preview/' + svyType);
     }
 
     function reinitSvyContents() {
@@ -298,7 +298,7 @@ export default function SurveyModify (props) {
                                             <span className="block truncate">{selected.name}</span>
                                             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                                             <ChevronUpDownIcon
-                                                className="w-5 h-5 text-gray-400"
+                                                className="w-5 h-5 text-neutral-400"
                                                 aria-hidden="true"
                                             />
                                             </span>
@@ -315,7 +315,7 @@ export default function SurveyModify (props) {
                                             key={type.name}
                                             className={({ active }) =>
                                                 `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                                                active ? 'bg-fdyellowbright text-gray-900' : 'text-gray-900'
+                                                active ? 'bg-fdyellowbright text-neutral-900' : 'text-neutral-900'
                                                 }`
                                             }
                                             value={type}
@@ -378,7 +378,7 @@ export default function SurveyModify (props) {
                     <a 
                         onClick={initGlbSvyContents}
                     > 
-                    <div className="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-gray-500 bg-white border border-gray-200 rounded-md hover:bg-neutral-200">
+                    <div className="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-neutral-500 bg-white border border-gray-200 rounded-md hover:bg-neutral-200">
                         설문 미리보기
                     </div>
                     </a>
@@ -419,12 +419,12 @@ export default function SurveyModify (props) {
                                 <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                                 <Dialog.Title
                                     as="h3"
-                                    className="text-lg font-extrabold leading-6 text-gray-900"
+                                    className="text-lg font-extrabold leading-6 text-neutral-900"
                                 >
                                     설문 저장
                                 </Dialog.Title>
                                 <div className="mt-2">
-                                    <p className="text-sm text-gray-500">
+                                    <p className="text-sm text-neutral-500">
                                     작성한 설문을 저장하시겠습니까?
                                     </p>
                                 </div>
@@ -480,19 +480,19 @@ export default function SurveyModify (props) {
                                 <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                                 <Dialog.Title
                                     as="h3"
-                                    className="text-lg font-extrabold leading-6 text-gray-900"
+                                    className="text-lg font-extrabold leading-6 text-neutral-900"
                                 >
                                     설문 옵션 설정
                                 </Dialog.Title>
                                 <div className="mt-2">
-                                    <p className="text-sm text-gray-500">
+                                    <p className="text-sm text-neutral-500">
                                     잠깐만요! 설문을 내보내기 전에 간단한 설정하고 가실게요😊
                                     </p>
                                 </div>
                                 <div className="px-2 py-5 bg-white">
                                     <div className="grid grid-cols-7 gap-2">
                                         <div className="col-span-7 sm:col-span-3">
-                                        <label htmlFor="svyStartDt" className="block text-xs font-medium text-gray-500">
+                                        <label htmlFor="svyStartDt" className="block text-xs font-medium text-neutral-500">
                                             설문 시작일 <span className="text-red-600">*</span>
                                         </label>
                                         {/* <input
@@ -517,7 +517,7 @@ export default function SurveyModify (props) {
                                         </div>
 
                                         <div className="col-span-7 sm:col-span-3">
-                                        <label htmlFor="svyEndDt" className="block text-xs font-medium text-gray-500">
+                                        <label htmlFor="svyEndDt" className="block text-xs font-medium text-neutral-500">
                                             설문 마감일
                                         </label>
                                         {/* <input
@@ -541,7 +541,7 @@ export default function SurveyModify (props) {
                                         </div>
 
                                         <div className="col-span-7 mt-2">
-                                        <label htmlFor="svyEndMsg" className="block text-xs font-medium text-gray-500">
+                                        <label htmlFor="svyEndMsg" className="block text-xs font-medium text-neutral-500">
                                             설문 제출시 안내 메세지
                                         </label>
                                         <textarea
@@ -555,7 +555,7 @@ export default function SurveyModify (props) {
                                         </div>
                                         
                                         <div className="col-span-7 mt-2">
-                                        <label htmlFor="svyRespMax" className="block text-xs font-medium text-gray-500">
+                                        <label htmlFor="svyRespMax" className="block text-xs font-medium text-neutral-500">
                                             설문 응답자수 제한
                                         </label>
                                         <input
@@ -626,12 +626,12 @@ export default function SurveyModify (props) {
                                 <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                                 <Dialog.Title
                                     as="h3"
-                                    className="text-lg font-extrabold leading-6 text-gray-900"
+                                    className="text-lg font-extrabold leading-6 text-neutral-900"
                                 >
                                     설문 저장 실패
                                 </Dialog.Title>
                                 <div className="mt-2">
-                                    <p className="text-sm text-gray-500">
+                                    <p className="text-sm text-neutral-500">
                                     설문 저장에 실패하였습니다. 잠시후 다시 시도해주세요
                                     </p>
                                 </div>
@@ -697,7 +697,7 @@ export default function SurveyModify (props) {
                                             <span className="block truncate">{selectedDuo.name}</span>
                                             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                                             <ChevronUpDownIcon
-                                                className="w-5 h-5 text-gray-400"
+                                                className="w-5 h-5 text-neutral-400"
                                                 aria-hidden="true"
                                             />
                                             </span>
@@ -714,7 +714,7 @@ export default function SurveyModify (props) {
                                             key={type.name}
                                             className={({ active }) =>
                                                 `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                                                active ? 'bg-fdyellowbright text-gray-900' : 'text-gray-900'
+                                                active ? 'bg-fdyellowbright text-neutral-900' : 'text-neutral-900'
                                                 }`
                                             }
                                             value={type}
@@ -771,7 +771,7 @@ export default function SurveyModify (props) {
                     <a 
                         onClick={initGlbSvyContents}
                     > 
-                    <div className="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-gray-500 bg-white border border-gray-200 rounded-md hover:bg-neutral-200">
+                    <div className="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-neutral-500 bg-white border border-gray-200 rounded-md hover:bg-neutral-200">
                         설문 미리보기
                     </div>
                     </a>
@@ -812,12 +812,12 @@ export default function SurveyModify (props) {
                                 <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                                 <Dialog.Title
                                     as="h3"
-                                    className="text-lg font-extrabold leading-6 text-gray-900"
+                                    className="text-lg font-extrabold leading-6 text-neutral-900"
                                 >
                                     설문 저장
                                 </Dialog.Title>
                                 <div className="mt-2">
-                                    <p className="text-sm text-gray-500">
+                                    <p className="text-sm text-neutral-500">
                                     작성한 설문을 저장하시겠습니까?
                                     </p>
                                 </div>
@@ -873,19 +873,19 @@ export default function SurveyModify (props) {
                                 <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                                 <Dialog.Title
                                     as="h3"
-                                    className="text-lg font-extrabold leading-6 text-gray-900"
+                                    className="text-lg font-extrabold leading-6 text-neutral-900"
                                 >
                                     설문 옵션 설정
                                 </Dialog.Title>
                                 <div className="mt-2">
-                                    <p className="text-sm text-gray-500">
+                                    <p className="text-sm text-neutral-500">
                                     잠깐만요! 설문을 내보내기 전에 간단한 설정하고 가실게요😊
                                     </p>
                                 </div>
                                 <div className="px-2 py-5 bg-white">
                                     <div className="grid grid-cols-7 gap-2">
                                         <div className="col-span-7 sm:col-span-3">
-                                        <label htmlFor="svyStartDt" className="block text-xs font-medium text-gray-500">
+                                        <label htmlFor="svyStartDt" className="block text-xs font-medium text-neutral-500">
                                             설문 시작일 <span className="text-red-600">*</span>
                                         </label>
                                         {/* <input
@@ -910,7 +910,7 @@ export default function SurveyModify (props) {
                                         </div>
 
                                         <div className="col-span-7 sm:col-span-3">
-                                        <label htmlFor="svyEndDt" className="block text-xs font-medium text-gray-500">
+                                        <label htmlFor="svyEndDt" className="block text-xs font-medium text-neutral-500">
                                             설문 마감일
                                         </label>
                                         {/* <input
@@ -934,7 +934,7 @@ export default function SurveyModify (props) {
                                         </div>
 
                                         <div className="col-span-7 mt-2">
-                                        <label htmlFor="svyEndMsg" className="block text-xs font-medium text-gray-500">
+                                        <label htmlFor="svyEndMsg" className="block text-xs font-medium text-neutral-500">
                                             설문 제출시 안내 메세지
                                         </label>
                                         <textarea
@@ -948,7 +948,7 @@ export default function SurveyModify (props) {
                                         </div>
                                         
                                         <div className="col-span-7 mt-2">
-                                        <label htmlFor="svyRespMax" className="block text-xs font-medium text-gray-500">
+                                        <label htmlFor="svyRespMax" className="block text-xs font-medium text-neutral-500">
                                             설문 응답자수 제한
                                         </label>
                                         <input
@@ -1019,12 +1019,12 @@ export default function SurveyModify (props) {
                                 <Dialog.Panel className="w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                                 <Dialog.Title
                                     as="h3"
-                                    className="text-lg font-extrabold leading-6 text-gray-900"
+                                    className="text-lg font-extrabold leading-6 text-neutral-900"
                                 >
                                     설문 저장 실패
                                 </Dialog.Title>
                                 <div className="mt-2">
-                                    <p className="text-sm text-gray-500">
+                                    <p className="text-sm text-neutral-500">
                                     설문 저장에 실패하였습니다. 잠시후 다시 시도해주세요
                                     </p>
                                 </div>

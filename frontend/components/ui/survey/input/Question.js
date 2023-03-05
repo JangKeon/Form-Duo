@@ -96,11 +96,11 @@ const Question = ({onRemoveQuestion, qId, name, qType, contentYn, svyContents, s
     };
 
     return (
-        <div className="mt-3 border-2 border-gray-100 shadow-lg rounded-2xl">
+        <div className="mt-3 border-2 border-gray-100 shadow-lg rounded-2xl dark:border-neutral-600">
             <div className="overflow-hidden shadow rounded-2xl">
-                <div className="px-4 py-5 bg-white sm:px-6 sm:pb-5">
+                <div className="px-4 py-5 bg-white sm:px-6 sm:pb-5 dark:bg-neutral-700">
                     <div className='flex items-center mx-2 mb-4 place-content-between'>
-                        <div className='flex items-center text-fdblue'>
+                        <div className='flex items-center text-fdblue dark:text-fdyellowlight'>
                             {/* 타입에 따라 icon 변경 */}
                             {
                                 {
@@ -119,8 +119,8 @@ const Question = ({onRemoveQuestion, qId, name, qType, contentYn, svyContents, s
                                 {name}
                             </p>
                         </div>
-                        <div className='p-2 bg-red-100 rounded-md hover:bg-red-200'>
-                            <TrashIcon className='w-4 h-4 text-red-700'  onClick={() => onRemoveQuestion(qId)}/>
+                        <div className='p-2 bg-red-100 rounded-md hover:bg-red-200 dark:bg-red-600 dark:hover:bg-red-500'>
+                            <TrashIcon className='w-4 h-4 text-red-700 dark:text-red-200'  onClick={() => onRemoveQuestion(qId)}/>
                         </div>
                                                 
                     </div>
@@ -131,7 +131,7 @@ const Question = ({onRemoveQuestion, qId, name, qType, contentYn, svyContents, s
                         id="qTitle"
                         placeholder="질문을 입력하세요"
                         defaultValue={qTitle}
-                        className="block w-full font-semibold border-gray-300 rounded-md shadow-sm focus:border-gray-300 focus:ring-gray-300 sm:text-md"
+                        className="block w-full font-semibold border-gray-300 rounded-md shadow-sm focus:border-gray-300 focus:ring-gray-300 sm:text-md dark:bg-neutral-500 dark:text-fdyellowbright dark:placeholder:text-fdyellowlight"
                         onChange={(e) => {
                             setQTitle(e.target.value);
                         }}
@@ -141,7 +141,7 @@ const Question = ({onRemoveQuestion, qId, name, qType, contentYn, svyContents, s
                     <textarea
                         id="qInfo"
                         rows={2}
-                        className="block w-full mt-4 border-gray-300 rounded-md shadow-sm focus:border-gray-300 focus:ring-gray-300 sm:text-sm"
+                        className="block w-full mt-4 border-gray-300 rounded-md shadow-sm focus:border-gray-300 focus:ring-gray-300 sm:text-sm dark:bg-neutral-500 dark:text-fdyellowbright dark:placeholder:text-fdyellowlight"
                         placeholder="문항에 대한 설명을 입력하세요 (생략 가능)"
                         defaultValue={qInfo}
                         onChange={(e) => {
